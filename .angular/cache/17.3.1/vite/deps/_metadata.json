@@ -1,0 +1,79 @@
+{
+  "hash": "0f9beb1a",
+  "configHash": "2ddabe22",
+  "lockfileHash": "32dafb72",
+  "browserHash": "8bfd4f8e",
+  "optimized": {
+    "@angular/core": {
+      "src": "../../../../../node_modules/@angular/core/fesm2022/core.mjs",
+      "file": "@angular_core.js",
+      "fileHash": "4fae89af",
+      "needsInterop": false
+    },
+    "@angular/platform-browser": {
+      "src": "../../../../../node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs",
+      "file": "@angular_platform-browser.js",
+      "fileHash": "6f56ecfa",
+      "needsInterop": false
+    },
+    "@angular/router": {
+      "src": "../../../../../node_modules/@angular/router/fesm2022/router.mjs",
+      "file": "@angular_router.js",
+      "fileHash": "2c29362d",
+      "needsInterop": false
+    },
+    "tabulator-tables": {
+      "src": "../../../../../node_modules/tabulator-tables/dist/js/tabulator_esm.js",
+      "file": "tabulator-tables.js",
+      "fileHash": "626cd907",
+      "needsInterop": false
+    },
+    "tslib": {
+      "src": "../../../../../node_modules/tslib/tslib.es6.mjs",
+      "file": "tslib.js",
+      "fileHash": "27ab7321",
+      "needsInterop": false
+    },
+    "@ng-bootstrap/ng-bootstrap": {
+      "src": "../../../../../node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/ng-bootstrap.mjs",
+      "file": "@ng-bootstrap_ng-bootstrap.js",
+      "fileHash": "8dcda427",
+      "needsInterop": false
+    },
+    "@angular/common/http": {
+      "src": "../../../../../node_modules/@angular/common/fesm2022/http.mjs",
+      "file": "@angular_common_http.js",
+      "fileHash": "4b2adb21",
+      "needsInterop": false
+    },
+    "@angular/forms": {
+      "src": "../../../../../node_modules/@angular/forms/fesm2022/forms.mjs",
+      "file": "@angular_forms.js",
+      "fileHash": "aecfcd7d",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-KGAB32UC": {
+      "file": "chunk-KGAB32UC.js"
+    },
+    "chunk-M2ZRH2T3": {
+      "file": "chunk-M2ZRH2T3.js"
+    },
+    "chunk-ZEDSAP75": {
+      "file": "chunk-ZEDSAP75.js"
+    },
+    "chunk-BX7YRPOJ": {
+      "file": "chunk-BX7YRPOJ.js"
+    },
+    "chunk-3326SOTJ": {
+      "file": "chunk-3326SOTJ.js"
+    },
+    "chunk-AOF462FV": {
+      "file": "chunk-AOF462FV.js"
+    },
+    "chunk-J4B6MK7R": {
+      "file": "chunk-J4B6MK7R.js"
+    }
+  }
+}
