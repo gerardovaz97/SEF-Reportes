@@ -1,34 +1,8 @@
 import { AfterViewInit, Component } from '@angular/core';
 import {TabulatorFull as Tabulator} from 'tabulator-tables';
+import { Reporte } from '../../interfaces/reportes.interfaces';
 
 
-
-const persons = [
-  {
-    id: '1',
-    firstName: 'John',
-    lastName: 'Smith',
-    state: 'Ohio',
-  },
-  {
-    id: '2',
-    firstName: 'Jane',
-    lastName: 'Doe',
-    state: 'Iowa',
-  },
-  {
-    id: '3',
-    firstName: 'Bill',
-    lastName: 'Great',
-    state: 'Hawaii',
-  },
-  {
-    id: '4',
-    firstName: 'Ted',
-    lastName: 'Adventure',
-    state: 'Arizona',
-  },
-];
 @Component({
   selector: 'app-reportes',
   templateUrl: './reportes.component.html',
@@ -46,27 +20,35 @@ export class ReportesComponent implements AfterViewInit{
     { title: 'Last Name', field: 'lastName' },
     { title: 'Location', field: 'state' },
   ];
-  constructor() {}
+  constructor(private reportesService: ReportesService) {}
+  
+  public getReporte : any;
 
   ngOnInit() {
-    this.exTable = new Tabulator(this.tab, {
-      height: 130,
-      layout: 'fitColumns',
-      columns: this.table_def,
-      movableColumns: true,
-      data: persons,
-    });
-    document.getElementById('ex-table-div')?.appendChild(this.tab);
+
+    this.reportesService.getReportesTableData().subscribe(
+      reporte => {
+        this.getReporte = reporte;
   
+        console.log(reporte);
+        
+        this.exTable?.setData(reporte);
+      }
+    );
   }
 
   downloadReport(){
    this.exTable.download('xlsx',"data.xlsx")
   }
-  
-  
+
   ngAfterViewInit() {
-    this.exTable?.setData(persons);
-  }
-  
+    this.exTable = new Tabulator(this.tab, {
+      height: 400,
+      layout: 'fitColumns',
+      columns: this.table_def,
+      movableColumns: true,
+      data: this.getReporte,
+    });
+    document.getElementById('ex-table-div')?.appendChild(this.tab);
+  } 
 }
