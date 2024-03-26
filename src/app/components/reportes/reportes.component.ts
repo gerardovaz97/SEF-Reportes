@@ -34,7 +34,16 @@ export class ReportesComponent implements AfterViewInit{
         console.log(reporte);
         
         this.exTable?.setData(reporte);
-      }
+
+        this.exTable = new Tabulator(this.tab, {
+          height: 400,
+          layout: 'fitColumns',
+          columns: this.table_def,
+          movableColumns: true,
+          data: this.getReporte,
+        });
+        document.getElementById('ex-table-div')?.appendChild(this.tab);
+      } 
     );
   }
 
@@ -43,13 +52,6 @@ export class ReportesComponent implements AfterViewInit{
   }
 
   ngAfterViewInit() {
-    this.exTable = new Tabulator(this.tab, {
-      height: 400,
-      layout: 'fitColumns',
-      columns: this.table_def,
-      movableColumns: true,
-      data: this.getReporte,
-    });
-    document.getElementById('ex-table-div')?.appendChild(this.tab);
-  } 
+    console.log(this.getReporte); 
+  }
 }
