@@ -12,13 +12,18 @@
             <!--? Modal Body-->
             <div class="modal-body">
                 <form>
-                    <div>
-                        <label>Email:</label>
-                        <input type="text" placeholder="">
+                    <div class="row">
+                        <label class="form-label col-5 pt-1">Email:</label>
+                        <input class="form-control w-50 col-7" type="text" placeholder="" required>
                     </div>
-                    <div>
-                        <label>Documento:</label>
-                        
+                    <div class="row">
+                        <label class="form-label col-5 pt-1">Documento:</label>
+                        <div class="col-7 input-group mb-3">
+                            <button class="bn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{documentList[0]}}</button>
+                            <ul *ngFor="let document of documentList" class="dropdown-menu">
+                                <li><a></a></li>
+                            </ul>
+                        </div>
                     </div>
                 </form>
             </div>
