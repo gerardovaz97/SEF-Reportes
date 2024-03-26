@@ -1,36 +1,72 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import {TabulatorFull as Tabulator} from 'tabulator-tables'
+import { AfterViewInit, Component } from '@angular/core';
+import {TabulatorFull as Tabulator} from 'tabulator-tables';
 
+
+
+const persons = [
+  {
+    id: '1',
+    firstName: 'John',
+    lastName: 'Smith',
+    state: 'Ohio',
+  },
+  {
+    id: '2',
+    firstName: 'Jane',
+    lastName: 'Doe',
+    state: 'Iowa',
+  },
+  {
+    id: '3',
+    firstName: 'Bill',
+    lastName: 'Great',
+    state: 'Hawaii',
+  },
+  {
+    id: '4',
+    firstName: 'Ted',
+    lastName: 'Adventure',
+    state: 'Arizona',
+  },
+];
 @Component({
   selector: 'app-reportes',
   templateUrl: './reportes.component.html',
   styleUrl: './reportes.component.scss'
 })
-export class ReportesComponent implements OnChanges{
-  
-  @Input() tableData: any[] = [ 
-      {id:1, name:"Oli Bob", age:"12", col:"red", dob:""},
-      {id:2, name:"Mary May", age:"1", col:"blue", dob:"14/05/1982"},
-      {id:3, name:"Christine Lobowski", age:"42", col:"green", dob:"22/05/1982"},
-      {id:4, name:"Brendon Philips", age:"125", col:"orange", dob:"01/08/1980"},
-      {id:5, name:"Margret Marmajuke", age:"16", col:"yellow", dob:"31/01/1999"},
-  ];
-  @Input() columnNames: any[] = [];
-  @Input() height: string = '311px';
+export class ReportesComponent implements AfterViewInit{
+  exTable: any;
+  filterParam: string = '';
 
   tab = document.createElement('div');
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.drawTable();
-  }
-  private drawTable(): void {
-    new Tabulator(this.tab, {
-      data: this.tableData,
-      reactiveData:true, 
-      columns: this.columnNames,
-      layout: 'fitData',
-      height: this.height
+  table_def = [
+    { title: 'Id', field: 'id' },
+    { title: 'First Name', field: 'firstName' },
+    { title: 'Last Name', field: 'lastName' },
+    { title: 'Location', field: 'state' },
+  ];
+  constructor() {}
+
+  ngOnInit() {
+    this.exTable = new Tabulator(this.tab, {
+      height: 130,
+      layout: 'fitColumns',
+      columns: this.table_def,
+      movableColumns: true,
+      data: persons,
     });
-    document.getElementById('my-tabular-table')?.appendChild(this.tab);
+    document.getElementById('ex-table-div')?.appendChild(this.tab);
+  
   }
+
+  downloadReport(){
+   this.exTable.download('xlsx',"data.xlsx")
+  }
+  
+  
+  ngAfterViewInit() {
+    this.exTable?.setData(persons);
+  }
+  
 }
