@@ -12,13 +12,13 @@ export class CreedentialsService {
 
     constructor(private http: HttpClient) { }
 
-    private getUsersRequest(url: string): Observable<User>{
-        return this.http.get<User>(url);
+    private getUsersRequest(url: string): Observable<User[]>{
+        return this.http.get<User[]>(url);
     }
 
     // Peticion a API
-    public getUserCredentials(): Observable<User> {
-        const url = `${this.apiUrl}/api/users/credenciales/1`;
+    public getUserCredentials(): Observable<User[]> {
+        const url = `${this.apiUrl}/api/users/credenciales`;
         return this.getUsersRequest(url);
     }
     

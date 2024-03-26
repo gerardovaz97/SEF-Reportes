@@ -11,6 +11,7 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { ReportesComponent } from './components/reportes/reportes.component';
 import { LoginComponent } from './components/login/login.component';
 import { TabulatorTablesComponent } from './components/tabulator-tables/tabulator-tables.component';
+import { ModalComponent } from './shared/modal/modal.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { TabulatorTablesComponent } from './components/tabulator-tables/tabulato
     SidebarComponent,
     ReportesComponent,
     LoginComponent,
-    TabulatorTablesComponent
+    TabulatorTablesComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
