@@ -13,16 +13,22 @@
                     <!--? Input: Usuario-->
                     <div class="input-group mb-3">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="floatingInputUser" placeholder #txtUser formControlName="username" required>
+                            <input type="text" class="form-control" id="floatingInputUser" placeholder #txtUser
+                                formControlName="username" required>
                             <label for="floatingInputUser" class="text-secondary">Usuario</label>
                         </div>
                     </div>
                     <!--? Input: Contraseña-->
                     <div class="input-group mb-3">
                         <div class="form-floating">
-                            <input type="password" class="form-control" id="floatingInputPass" #txtPassword formControlName="password"  placeholder required>
+                            <input type="password" class="form-control" id="floatingInputPass" #txtPassword
+                                formControlName="password" placeholder required>
                             <label for="floatingInputPass" class="text-secondary">Contraseña</label>
                         </div>
+                    </div>
+                    <!--? Olvido contraseña-->
+                    <div class="text-center">
+                        <shared-modal></shared-modal>
                     </div>
                     <!--? Input: Boton-->
                     <div class="input-group my-3">
