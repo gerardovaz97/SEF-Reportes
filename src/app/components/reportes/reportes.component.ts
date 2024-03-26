@@ -1,6 +1,7 @@
 import { AfterViewInit, Component } from '@angular/core';
 import {TabulatorFull as Tabulator} from 'tabulator-tables';
 import { Reporte } from '../../interfaces/reportes.interfaces';
+import { ReportesService } from '../../services/reportes.service';
 
 
 @Component({

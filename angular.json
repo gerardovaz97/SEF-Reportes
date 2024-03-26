@@ -41,7 +41,8 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "./node_modules/xlsx/dist/xlsx.full.min.js"
+              "./node_modules/xlsx/dist/xlsx.full.min.js",
+              "./node_modules/tabulator-tables/dist/js/tabulator.min.js"
             ]
           },
           "configurations": {
