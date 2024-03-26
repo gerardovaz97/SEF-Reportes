@@ -13,12 +13,12 @@ export class ReportesService {
 
   constructor(private http: HttpClient) { }
 
-  private getReportesRequest(url:string): Observable<Reporte>{
-    return this.http.get<Reporte>(url);
+  private getReportesRequest(url:string): Observable<Reporte[]>{
+    return this.http.get<Reporte[]>(url);
   }
     // Peticion a API
-  public getReportesTableData(): Observable<Reporte>{
-    const url= `${this.apiUrl}/api/reportes/table`
+  public getReportesTableData(): Observable<Reporte[]>{
+    const url= `${this.apiUrl}/api/reportes/Table`
     return this.getReportesRequest(url);
   }
 }
