@@ -11,19 +11,36 @@
             </div>
             <!--? Modal Body-->
             <div class="modal-body">
-                <form>
-                    <div class="row">
-                        <label class="form-label col-5 pt-1">Email:</label>
-                        <input class="form-control w-50 col-7" type="text" placeholder="" required>
+                <form (ngSubmit)="onSubmit()">
+                    <!--* Input Email-->
+                    <div class="row pl-3 mb-3">
+                        <label class="form-label col-5 pt-1" for="emailInput">Email:</label>
+                        <input class="form-control w-50 col-7" type="email" pattern="[^ @]*@[^ @]*" placeholder="" id="emailInput" required>
                     </div>
-                    <div class="row">
-                        <label class="form-label col-5 pt-1">Documento:</label>
-                        <div class="col-7 input-group mb-3">
-                            <button class="bn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{documentList[0]}}</button>
-                            <ul *ngFor="let document of documentList" class="dropdown-menu">
-                                <li><a></a></li>
+                    <!--* Input Document-->
+                    <div class="row mb-3">
+                        <label class="form-label col-5 pt-1" for="documentInput">Documento:</label>
+                        <div class="col-7 input-group mb-3 w-50">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{documentSeleted}}</button>
+                            <ul class="dropdown-menu">
+                                @for (document of documentList; track documentList){
+                                    <li><a class="dropdown-item" href="#" (click)="onSelected(document)">{{document}}</a></li>
+                                }
                             </ul>
+                            @if (documentSeleted == "DUI") {
+                                <input type="text" class="form-control" aria-label="" placeholder="XXXXXXXX-X" id="documentInput">
+                            }
+                            @else if (documentSeleted == "NIT") {
+                                <input type="text" class="form-control" aria-label="" placeholder="XXXX-XXXXXX-XXX-X" id="documentInput">
+                            }
+                            @else {
+                                <input type="text" class="form-control" aria-label="" id="documentInput" disabled>
+                            }
                         </div>
+                    </div>
+                    <!--* Input Button-->
+                    <div class="d-flex justify-content-center ">
+                        <input type="submit" class="btn btn-primary w-25" value="Restablecer">
                     </div>
                 </form>
             </div>

@@ -4,21 +4,20 @@ import { User } from '../../interfaces/user.interface';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
 
   //* Parametro local donde almacena los usuarios que son consumidos del API por el service
   public getUser: User[] = [];
 
-  constructor( 
+  constructor(
     private creedentialService: CreedentialsService,
     private router: Router,
-    ){}
+  ) { }
 
   //* Codigo que se inicializa junto al componente
   ngOnInit(): void {
@@ -41,23 +40,36 @@ export class LoginComponent implements OnInit{
   public validationUser: boolean = false;
 
   //* Funcion que se ejecuta cuando el evento Submit del Form (form) es ejecutado
-  onSubmit(){
-    this.getUser.forEach(user => {
-      this.validation(user);
-    })
-  }
+  onSubmit() {
 
-  //* Funcion que ejecuta un recorrido de todos los usuarios de la API contra las credenciales ingresadas por el usuario
-  validation(user: User){
-    if(this.form.value.username === user.user && this.form.value.password === user.password){
-      this.validationUser = true;
+    this.inputValidation();
+    if(this.inputError !== "") return console.log(this.inputError);
+    
+    //? Codigo de busqueda del user
+    const {username, password} = this.form.value;
+    const usuario = this.getUser.filter( usuario => username === usuario.user);
+    console.log(usuario);
+    const usuarioAuth = usuario.filter(usuario => password === usuario.password)
+    console.log(usuarioAuth);
+
+    //? Codigo de validacion de existencia de las credenciales
+    if(usuarioAuth.length > 0){
       this.router.navigate(['reportes'])
-      return console.log("Credenciales Correctas");
-    } else {
-      this.validationUser = false;
+    }
+    else{
+      this.inputError = "Credenciales incorrectas";
+      console.log("Usuario no encontrado");
     }
   }
 
+  //? Codigo de Validacion de Inputs
+  inputError: string = "";
 
-  
+  inputValidation(){
+    const {username, password} = this.form.value;
+    this.inputError = (username == "")? "Ingrese su usuario": "";
+    if(this.inputError !== "") return;
+    this.inputError = (password == "")? "Ingrese su contraseña": "";
+  }
+
 }
