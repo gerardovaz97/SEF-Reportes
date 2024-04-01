@@ -44,13 +44,23 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  getUsername(): any{
+    return this.aFormGroup.get('username');
+  }
+  getPassword(): any{
+    return this.aFormGroup.get('password');
+  }
+
   //* Parametro booleano de acceso de usuario
   public validationUser: boolean = false;
 
   //* Funcion que se ejecuta cuando el evento Submit del Form (form) es ejecutado
   onSubmit() {
+
     //? Codigo de busqueda y validacion de credenciales
     const { username, password } = this.aFormGroup.value;
+
+    console.log(username);
     this.creedentialsInputValidation(username,password);
     console.log(this.aFormGroup.status);
   }

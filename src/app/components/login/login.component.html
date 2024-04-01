@@ -13,14 +13,14 @@
                     <!--? Input: Usuario-->
                     <shared-input
                         [type]="'text'" 
-                        formControlName="username"
+                        [formControl]="getUsername()"
                         [placeholder]="'Usuario'"
                         [id]="'floatingInputUser'">
                     </shared-input>
                     <!--? Input: Contraseña-->
                     <shared-input 
                         [type]="'password'"
-                        formControlName="password"
+                        [formControl]="getPassword()"
                         [placeholder]="'Contraseña'"
                         [id]="'floatingInputPassword'">
                     </shared-input>
