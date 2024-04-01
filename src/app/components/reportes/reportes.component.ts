@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {TabulatorFull as Tabulator} from 'tabulator-tables';
 import { Reporte } from '../../interfaces/reportes.interfaces';
 import { ReportesService } from '../../services/reportes.service';
@@ -66,7 +66,7 @@ export class ReportesComponent implements OnInit{
   }
 
   downloadSelectedReport() {
-    
+    console.log(this.getReporte);
     
   }
   
