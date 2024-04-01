@@ -28,10 +28,10 @@ export class LoginComponent implements OnInit {
 
   //* Codigo que se inicializa junto al componente
   ngOnInit(): void {
-    //? Parametro que almacena la data ingresada por el usuario en el formulario (form)
+    //? Conjunto de componentes del FormGroup con validaciones y almacenamiento de datos del form
     this.aFormGroup = this.formBuilder.group({
-      username: new FormControl(''),
-      password: new FormControl(''),
+      username: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
       recaptcha: ['', Validators.required]
     })
 
@@ -49,30 +49,20 @@ export class LoginComponent implements OnInit {
 
   //* Funcion que se ejecuta cuando el evento Submit del Form (form) es ejecutado
   onSubmit() {
-    //? Funcion de validacion de campos vacios
-    this.nullInputValidation();
-    if (this.inputError !== "") return console.log(this.inputError);
-
     //? Codigo de busqueda y validacion de credenciales
     const { username, password } = this.aFormGroup.value;
     this.creedentialsInputValidation(username,password);
+    console.log(this.aFormGroup.status);
   }
 
-  //* Codigo de Validacion de Inputs
+  //* Variable de validacion de credenciales
   inputError: string = "";
-
-  nullInputValidation(): void {
-    const { username, password } = this.aFormGroup.value;
-    this.inputError = (username == "") ? "Ingrese su usuario" : "";
-    if (this.inputError !== "") return;
-    this.inputError = (password == "") ? "Ingrese su contraseña" : "";
-  }
 
   creedentialsInputValidation(username: string, password: string): void{
     const userAuth = this.getUser.filter( _creedentials => username === _creedentials.user);
     const passAuth = userAuth.filter(_creedentials => password === _creedentials.password);
 
-    if (passAuth.length == 1) {
+    if (passAuth.length == 1 && this.aFormGroup.status == 'VALID') {
       this.router.navigate(['reportes'])
     }
     else {
@@ -80,5 +70,4 @@ export class LoginComponent implements OnInit {
       console.log("Usuario no encontrado");
     }
   }
-
 }

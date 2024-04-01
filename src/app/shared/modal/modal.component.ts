@@ -19,8 +19,7 @@ export class ModalComponent implements OnInit{
   
   //* Codigo que se inicializa junto al componentes
   ngOnInit(): void {
-    //* Se le asigna un valor por defecto para que el input no sea accesible desde el inicio
-    console.log(this.documentList)
+    //* Se le asigna un valor por defecto para que el input no sea accesible desde el inicios
     this.documentSeleted = "DUI/NIT";
   }
 

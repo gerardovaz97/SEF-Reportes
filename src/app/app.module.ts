@@ -13,6 +13,7 @@ import { ReportesComponent } from './components/reportes/reportes.component';
 import { LoginComponent } from './components/login/login.component';
 import { TabulatorTablesComponent } from './components/tabulator-tables/tabulator-tables.component';
 import { ModalComponent } from './shared/modal/modal.component';
+import { InputComponent } from './shared/input/input.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ModalComponent } from './shared/modal/modal.component';
     ReportesComponent,
     LoginComponent,
     TabulatorTablesComponent,
-    ModalComponent
+    ModalComponent,
+    InputComponent
   ],
   imports: [
     BrowserModule,
