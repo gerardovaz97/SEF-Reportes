@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {TabulatorFull as Tabulator} from 'tabulator-tables';
 import { Reporte } from '../../interfaces/reportes.interfaces';
 import { ReportesService } from '../../services/reportes.service';
@@ -9,7 +9,7 @@ import { FormGroup, FormControl } from '@angular/forms';
   templateUrl: './reportes.component.html',
   styleUrl: './reportes.component.scss'
 })
-export class ReportesComponent implements AfterViewInit{
+export class ReportesComponent implements OnInit{
   exTable: any;
   filterParam: string = '';
 
@@ -35,9 +35,6 @@ export class ReportesComponent implements AfterViewInit{
       reporte => {
         this.getReporte = reporte;
   
-        console.log(reporte);
-        
-        this.exTable?.setData(reporte);
 
         this.exTable = new Tabulator(this.tab, {
           height: 400,
@@ -49,6 +46,7 @@ export class ReportesComponent implements AfterViewInit{
           paginationSize:100,
           paginationSizeSelector:[100, 250, 400, 500],
           paginationCounter:"rows",
+          selectableRows: true,
           data: this.getReporte,
         });
         document.getElementById('ex-table-div')?.appendChild(this.tab);
@@ -60,9 +58,6 @@ export class ReportesComponent implements AfterViewInit{
     const n = this.form.value;
     this.reportesService.postData(n).subscribe(response => {
       console.log('respuesta de la api:', response);
-    },error => {
-      console.log('Error al enviar datos:', error);
-      
     });
   }
 
@@ -70,7 +65,10 @@ export class ReportesComponent implements AfterViewInit{
    this.exTable.download('xlsx',"data.xlsx")
   }
 
-  ngAfterViewInit() {
-    console.log(this.getReporte); 
+  downloadSelectedReport() {
+    console.log(this.getReporte);
+    
   }
+  
+  
 }
