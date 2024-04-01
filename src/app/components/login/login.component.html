@@ -8,7 +8,7 @@
             </div>
             <div>
                 <!--* FORM-->
-                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <form [formGroup]="aFormGroup" (ngSubmit)="onSubmit()">
                     <p class="fs-5 text text-secondary text-center">Ingrese a su cuenta</p>
                     <!--? Input: Usuario-->
                     <div class="input-group mb-3">
@@ -25,6 +25,10 @@
                                 formControlName="password" placeholder required>
                             <label for="floatingInputPass" class="text-secondary">Contraseña</label>
                         </div>
+                    </div>
+                    <!--? Input: Recaptcha-->
+                    <div class="d-flex align-items-center justify-content-center ">
+                        <ngx-recaptcha2 [siteKey]="siteKey" formControlName="recaptcha"></ngx-recaptcha2>
                     </div>
                     <!--? Olvido contraseña-->
                     <div class="text-center my-3">
