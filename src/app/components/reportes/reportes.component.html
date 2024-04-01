@@ -1,3 +1,9 @@
 <button (click)="downloadReport()" id="download-reporte">Descargar reporte</button>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div >
+        <input type="number" class="form-control" formControlName="n">
+        <input type="submit">
+    </div>
+</form>
 <div id="ex-table-div"></div>
-<div id="example-table"></div>
+
