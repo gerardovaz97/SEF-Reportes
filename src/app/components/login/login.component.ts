@@ -70,10 +70,8 @@ export class LoginComponent implements OnInit {
     const userAuth = this.getUser.filter( _creedentials => username === _creedentials.user);
     const passAuth = userAuth.filter(_creedentials => password === _creedentials.password);
 
-    //? Verificacion de formulario invalido
-    if (this.aFormGroup.status == 'INVALID') return;
     //? Validacion de credenciales correctas
-    else if (passAuth.length == 1) {
+    if (passAuth.length == 1) {
       this.router.navigate(['reportes'])
       this.formSubmitted = false;
       return;
