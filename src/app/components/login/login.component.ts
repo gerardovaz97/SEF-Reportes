@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   //* Key de Recaptcha
   public siteKey: string = "6LdQPKspAAAAAGxXtYbCOdaWW-RYC_VAQ4vCSk7_";
 
+  //* Inyeccion de servicios
   constructor(
     private creedentialService: CreedentialsService,
     private router: Router,
