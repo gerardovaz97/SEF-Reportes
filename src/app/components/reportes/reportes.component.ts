@@ -16,10 +16,29 @@ export class ReportesComponent implements OnInit{
   tab = document.createElement('div');
 
   table_def = [
-    { title: 'Id', field: 'id' },
-    { title: 'First Name', field: 'firstName' },
-    { title: 'Last Name', field: 'lastName' },
-    { title: 'Location', field: 'state' },
+    { title: 'Fecha', field: 'fecha' },
+    { title: 'Corte', field: 'corte' },
+    { title: 'Clase de Documento', field: 'claseDocumento' },
+    { title: 'Tipo de Documento', field: 'tipoDocumento' },
+    { title: 'Codigo de Generacion de DTE', field: 'codigoGeneracionDTE' },
+    { title: 'Sello de Recibido', field: 'selloRecibido' },
+    { title: 'Numero de Control', field: 'numeroControl' },
+    { title: 'NIT', field: 'NIT' },
+    { title: 'Nombre del Cliente', field: 'nombreCliente' },
+    { title: 'Ventas Exentas', field: 'ventasExentas' },
+    { title: 'Ventas no Sujetas', field: 'ventasNoSujetas' },
+    { title: 'Ventas Gravadas Locales', field: 'ventasGravadasLocales' },
+    { title: 'Debito Fiscal IVA 1%', field: 'debitoFiscalIva' },
+    { title: 'Ventas a Cuentas De Terceros no Domiciliados', field: 'ventasACuentaDeTercerosNoDomiciliados' },
+    { title: 'Debito por Ventas a Cuentas de Terceros no Domiciliados', field: 'debitoPorVentasACuentasDeTercerosNoDomiciliados' },
+    { title: 'Total de Ventas', field: 'totalVentas' },
+    { title: 'IVA Percibido', field: 'IVAPercibido' },
+    { title: 'Numero de Anexo', field: 'numeroDeAnexo' },
+    { title: 'Numero de Registro', field: 'numeroDeRegistro' },
+    { title: 'Usuario', field: 'usuario' },
+    { title: 'Estado', field: 'estado' },
+
+ 
   ];
   constructor(private reportesService: ReportesService) {}
   
