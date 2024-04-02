@@ -11,8 +11,9 @@ export class InputComponent {
   @Input() public placeholder: string = "";
   @Input() public type: string = "";
   @Input() public id: string = "";
-  @Output() public value = new EventEmitter<string>();
   @Input() public formControl!: FormControl;
+  @Input() public formSubmitted?: boolean;
 
+  @Output() public value = new EventEmitter<string>();
 
 }

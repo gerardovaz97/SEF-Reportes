@@ -1,4 +1,4 @@
-<div class="input-group mb-3">
+<div class="input-group mb-3 ">
     <div class="form-floating">
         <input 
             [type]="type" 
@@ -6,7 +6,8 @@
             [id]="id" 
             placeholder 
             [formControl]="formControl"
-            #txtUser>
+            [ngClass]="{'is-invalid': formSubmitted && formControl.hasError('required')}"
+            #txtUser> 
         <label
             [for]="id"
             class="text-secondary">{{placeholder}}</label>

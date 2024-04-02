@@ -45,6 +45,9 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  //* Controles del formulario
+  public formSubmitted: boolean = false;
+
   getUsername(): any{
     return this.aFormGroup.get('username');
   }
@@ -52,33 +55,33 @@ export class LoginComponent implements OnInit {
     return this.aFormGroup.get('password');
   }
 
-  //* Parametro booleano de acceso de usuario
-  public validationUser: boolean = false;
-
   //* Funcion que se ejecuta cuando el evento Submit del Form (form) es ejecutado
   onSubmit() {
-
     //? Codigo de busqueda y validacion de credenciales
     const { username, password } = this.aFormGroup.value;
-
-    console.log(username);
+    this.formSubmitted = true;
     this.creedentialsInputValidation(username,password);
-    console.log(this.aFormGroup.status);
   }
 
-  //* Variable de validacion de credenciales
+  //* Variable de validacion de credenciales y formulario
   inputError: string = "";
 
   creedentialsInputValidation(username: string, password: string): void{
     const userAuth = this.getUser.filter( _creedentials => username === _creedentials.user);
     const passAuth = userAuth.filter(_creedentials => password === _creedentials.password);
 
-    if (passAuth.length == 1 && this.aFormGroup.status == 'VALID') {
+    //? Verificacion de formulario invalido
+    if (this.aFormGroup.status == 'INVALID') return;
+    //? Validacion de credenciales correctas
+    else if (passAuth.length == 1) {
       this.router.navigate(['reportes'])
+      this.formSubmitted = false;
+      return;
     }
+    //? Credenciales incorrectas
     else {
       this.inputError = "Credenciales incorrectas";
-      console.log("Usuario no encontrado");
+      return;
     }
   }
 }

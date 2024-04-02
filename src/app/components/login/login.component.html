@@ -1,6 +1,6 @@
 <div class="container">
-    <div class="row mx-4 my-5 shadow bg-white rounded w-100 h-100 ">
-        <div class="col-5">
+    <div class="row mx-auto my-5 shadow bg-white rounded w-100 h-100 ">
+        <div class="col-lg-5 col-md-12">
             <!--TODO: LEFT MENU-->
             <div>
                 <!--* IMAGE -->
@@ -11,21 +11,27 @@
                 <form [formGroup]="aFormGroup" (ngSubmit)="onSubmit()">
                     <p class="fs-5 text text-secondary text-center">Ingrese a su cuenta</p>
                     <!--? Input: Usuario-->
-                    <shared-input
-                        [type]="'text'" 
-                        [formControl]="getUsername()"
-                        [placeholder]="'Usuario'"
-                        [id]="'floatingInputUser'">
-                    </shared-input>
+                    <div class="w-75 mx-auto">
+                        <shared-input 
+                            [type]="'text'" 
+                            [formControl]="getUsername()" 
+                            [placeholder]="'Usuario'"
+                            [id]="'username'"
+                            [formSubmitted]="formSubmitted">
+                        </shared-input>
+                    </div>
                     <!--? Input: Contraseña-->
-                    <shared-input 
-                        [type]="'password'"
-                        [formControl]="getPassword()"
-                        [placeholder]="'Contraseña'"
-                        [id]="'floatingInputPassword'">
-                    </shared-input>
+                    <div class="w-75 mx-auto">
+                        <shared-input 
+                            [type]="'password'" 
+                            [formControl]="getPassword()" 
+                            [placeholder]="'Contraseña'"
+                            [id]="'password'"
+                            [formSubmitted]="formSubmitted">
+                        </shared-input>
+                    </div>
                     <!--? Input: Recaptcha-->
-                    <div class="d-flex align-items-center justify-content-center ">
+                    <div class="d-flex align-items-center justify-content-center">
                         <ngx-recaptcha2 [siteKey]="siteKey" formControlName="recaptcha"></ngx-recaptcha2>
                     </div>
                     <!--? Olvido contraseña-->
@@ -33,19 +39,38 @@
                         <shared-modal></shared-modal>
                     </div>
                     <!--? Mensajes de error-->
-                    @if (inputError !== "") {
-                        <div class="p-3 text-center text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3">
-                            {{inputError}}
+                    <!-- @if (aFormGroup.get('username')?.hasError('required') && formSubmitted) {
+                    <div
+                        class="p-3 text-center text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3">
+                        Usuario obligatorio
+                    </div>
+                    }
+                    @else if (aFormGroup.get('password')?.hasError('required') && formSubmitted) {
+                        <div
+                            class="p-3 text-center text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3">
+                            Ingrese contraseña
                         </div>
                     }
+                    @else if (aFormGroup.get('recaptcha')?.hasError('required') && formSubmitted) {
+                        <div
+                            class="p-3 text-center text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3">
+                            Completar el Captcha
+                        </div>
+                    } -->
+                    @if (inputError !== "") {
+                        <div
+                            class="p-3 text-center text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3">
+                            {{inputError}}
+                        </div>
+                        }
                     <!--? Input: Boton-->
                     <div class="input-group my-3">
-                        <input type="submit" class="form-control" value="Ingresar">
+                        <input type="submit" class="form-control btn btn-primary" value="Ingresar" [disabled]="">
                     </div>
                 </form>
             </div>
         </div>
-        <div class="col-7 bg-body-secondary ">
+        <div class="col-lg-7 bg-body-secondary ">
             <!--TODO: RIGHT MENU-->
         </div>
     </div>
