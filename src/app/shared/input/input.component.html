@@ -1,7 +1,7 @@
 <div class="input-group mb-3 ">
     <div class="form-floating">
         <input 
-            [type]="type" 
+            [type]="type"
             class="form-control" 
             [id]="id" 
             placeholder 
@@ -10,6 +10,10 @@
             #txtUser> 
         <label
             [for]="id"
-            class="text-secondary">{{placeholder}}</label>
+            class="text-secondary">{{placeholder}}
+        </label>
     </div>
+    @if (id === 'password') {
+        <i class="bi bi-eye-fill" style="font-size: 2em; color: #007bff;"></i>
+    }
 </div>

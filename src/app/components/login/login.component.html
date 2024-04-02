@@ -21,14 +21,15 @@
                         </shared-input>
                     </div>
                     <!--? Input: Contraseña-->
-                    <div class="w-75 mx-auto">
+                    <div class="w-75 mx-auto mb-3">
                         <shared-input 
-                            [type]="'password'" 
+                            [type]="showHidePassword" 
                             [formControl]="getPassword()" 
                             [placeholder]="'Contraseña'"
                             [id]="'password'"
                             [formSubmitted]="formSubmitted">
                         </shared-input>
+                        <a class="" href="#" (click)="changeType()">Mostrar contraseña</a>
                     </div>
                     <!--? Input: Recaptcha-->
                     <div class="d-flex align-items-center justify-content-center">
