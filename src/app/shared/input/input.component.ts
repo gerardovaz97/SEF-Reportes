@@ -7,10 +7,6 @@ import { FormControl } from '@angular/forms';
   styleUrl: './input.component.scss'
 })
 export class InputComponent implements OnInit{
-  ngOnInit(): void {
-    console.log();
-    
-  }
 
   @Input() public placeholder: string = "";
   @Input() public type: string = "";
@@ -18,5 +14,13 @@ export class InputComponent implements OnInit{
   @Input() public formControl!: FormControl;
   @Input() public formSubmitted?: boolean;
   @Output() public value = new EventEmitter<string>();
+
+  ngOnInit(): void {
+  }
+
+  //* Funcion de cambio a la visualizacion 
+  changeType(): void{
+    (this.type === 'password')? this.type = 'text': this.type = 'password';
+  }
 
 }

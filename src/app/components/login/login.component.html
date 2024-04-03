@@ -1,15 +1,13 @@
-<div class="container">
+<div class="container p-lg-2">
     <div class="row mx-auto my-5 shadow bg-white rounded w-100 h-100 ">
-        <div class="col-lg-5 col-md-12">
+        <div class="col-lg-5 col-md-12 my-2">
             <!--TODO: LEFT MENU-->
-            <div>
-                <!--* IMAGE -->
-                <img>
-            </div>
-            <div>
+            <!--* LOGO IMAGE -->
+            <shared-image [source]="'./assets/images/LOGO-SAFE.png'"  class="d-flex align-items-center justify-content-center py-2"></shared-image>
+            <div class="px-2">
+                <p class="fs-5 text text-secondary text-center pb-2">Ingrese a su cuenta</p>
                 <!--* FORM-->
                 <form [formGroup]="aFormGroup" (ngSubmit)="onSubmit()">
-                    <p class="fs-5 text text-secondary text-center">Ingrese a su cuenta</p>
                     <!--? Input: Usuario-->
                     <div class="w-75 mx-auto">
                         <shared-input 
@@ -23,13 +21,12 @@
                     <!--? Input: Contraseña-->
                     <div class="w-75 mx-auto mb-3">
                         <shared-input 
-                            [type]="showHidePassword" 
+                            [type]="'password'" 
                             [formControl]="getPassword()" 
                             [placeholder]="'Contraseña'"
                             [id]="'password'"
                             [formSubmitted]="formSubmitted">
                         </shared-input>
-                        <a class="" href="#" (click)="changeType()">Mostrar contraseña</a>
                     </div>
                     <!--? Input: Recaptcha-->
                     <div class="d-flex align-items-center justify-content-center">
@@ -53,8 +50,10 @@
                 </form>
             </div>
         </div>
-        <div class="col-lg-7 bg-body-secondary ">
-            <!--TODO: RIGHT MENU-->
+        <!-- TODO: RIGHT MENU -->
+        <!--* SAFE IMAGE-->
+        <div class="col-lg-7 px-0 m-auto h-100  w-50">
+            <shared-image [source]="'./assets/images/IMAGEN-PORTAL.png'"  class="d-none d-xl-flex d-lg-flex img-fluid mx-auto"></shared-image>
         </div>
     </div>
 </div>

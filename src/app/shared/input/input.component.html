@@ -1,5 +1,7 @@
 <div class="input-group mb-3 ">
+    <!--* Input Group template-->
     <div class="form-floating">
+        <!--? Input-->
         <input 
             [type]="type"
             class="form-control" 
@@ -8,12 +10,23 @@
             [formControl]="formControl"
             [ngClass]="{'is-invalid': formSubmitted && formControl.hasError('required')}"
             #txtUser> 
+        <!--? Label (placeholder)-->
         <label
             [for]="id"
             class="text-secondary">{{placeholder}}
         </label>
     </div>
-    @if (id === 'password') {
-        <i class="bi bi-eye-fill" style="font-size: 2em; color: #007bff;"></i>
+    <!--* Icono (eye) cambia la visibilidad del input (input password)-->
+    @if (id === 'password' && type === 'password') {
+        <!--? Icono (ojo tachado) cuando la contraseña esta oculta-->
+        <div class="bg-light px-2 py-2 border border-1">
+            <i (click)="changeType()" class="bi bi-eye-slash text-black " style="font-size: 1.5em; color: #007bff;"></i>
+        </div>
+    }
+    @else if (id === 'password' && type === 'text') {
+        <!--? Icono (ojo completo) cuando la contraseña esta visible-->
+        <div class="bg-light px-2 py-2 border border-1">
+            <i (click)="changeType()" class="bi bi-eye-fill text-black" style="font-size: 1.5em; color: #007bff;"></i>
+        </div>
     }
 </div>

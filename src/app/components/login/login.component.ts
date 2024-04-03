@@ -47,18 +47,12 @@ export class LoginComponent implements OnInit {
 
   //* Controles del formulario
   public formSubmitted: boolean = false;
-  public showHidePassword: string = 'password';
 
   getUsername(): any{
     return this.aFormGroup.get('username');
   }
   getPassword(): any{
     return this.aFormGroup.get('password');
-  }
-
-  changeType(): void{
-    console.log(this.showHidePassword);
-    (this.showHidePassword === 'password')? this.showHidePassword = 'text': this.showHidePassword = 'password';
   }
 
   //* Funcion que se ejecuta cuando el evento Submit del Form (form) es ejecutado
