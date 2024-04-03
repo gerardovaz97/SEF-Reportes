@@ -14,5 +14,4 @@ export class ImageComponent {
 
   @Input() public source?:string;
   @Input() public styles?:string;
-  @Input() public clases?:string;
 }

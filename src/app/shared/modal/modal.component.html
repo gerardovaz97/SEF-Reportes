@@ -13,9 +13,14 @@
             <div class="modal-body">
                 <form (ngSubmit)="onSubmit()">
                     <!--* Input Email-->
-                    <div class="row pl-3 mb-3">
-                        <label class="form-label col-5 pt-1" for="emailInput">Email:</label>
-                        <input class="form-control w-50 col-7" type="email" pattern="[^ @]*@[^ @]*" placeholder="" id="emailInput" required>
+                    <div class="row">
+                        <!-- <label class="form-label col-5 pt-1" for="emailInput">Email:</label>
+                        <input class="form-control w-50 col-7" type="email" pattern="[^ @]*@[^ @]*" placeholder="" id="emailInput" required> -->
+                        <shared-input 
+                            [type]="'email'"
+                            [placeholder]="'Correo Electronico'"
+                            [id]="'email'">
+                        </shared-input>
                     </div>
                     <!--* Input Document-->
                     <div class="row mb-3">

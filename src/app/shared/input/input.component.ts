@@ -8,17 +8,23 @@ import { FormControl } from '@angular/forms';
 })
 export class InputComponent implements OnInit{
 
-  @Input() public placeholder: string = "";
+  //* Placeholder de Inputs (opcional)
+  @Input() public placeholder?: string;
+  //* Type de Inputs (obligatorio)
   @Input() public type: string = "";
+  //* Id de Inputs (obligatorio)
   @Input() public id: string = "";
+  //* FormControl de Inputs (opcional)
   @Input() public formControl!: FormControl;
+  //* FormSubmitted para form dinamicos (opcional)
   @Input() public formSubmitted?: boolean;
+  //* Value para la salida de datos al form (opcional)
   @Output() public value = new EventEmitter<string>();
 
   ngOnInit(): void {
   }
 
-  //* Funcion de cambio a la visualizacion 
+  //* Funcion de cambio a la visualizacion (input type: password)
   changeType(): void{
     (this.type === 'password')? this.type = 'text': this.type = 'password';
   }
