@@ -19,33 +19,38 @@
                         <shared-input 
                             [type]="'email'"
                             [placeholder]="'Correo Electronico'"
-                            [id]="'email'">
+                            [id]="'emailInput'">
                         </shared-input>
                     </div>
                     <!--* Input Document-->
-                    <div class="row mb-3">
-                        <label class="form-label col-5 pt-1" for="documentInput">Documento:</label>
-                        <div class="col-7 input-group mb-3 w-50">
-                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{documentSeleted}}</button>
+                    <div class="row mb-3 px-1">
+                        <div class="col-3 h-100 bg-danger ">
+                            <button class="btn btn-outline-secondary col-sm-12 dropdown-toggle h-100 py-3 text-start align-text-bottom border border-1 "  data-bs-toggle="dropdown" aria-expanded="false">{{documentSeleted}}</button>
                             <ul class="dropdown-menu">
                                 @for (document of documentList; track documentList){
                                     <li><a class="dropdown-item" href="#" (click)="onSelected(document)">{{document}}</a></li>
                                 }
                             </ul>
-                            @if (documentSeleted == "DUI") {
-                                <input type="text" class="form-control" aria-label="" placeholder="XXXXXXXX-X" id="documentInput">
-                            }
-                            @else if (documentSeleted == "NIT") {
-                                <input type="text" class="form-control" aria-label="" placeholder="XXXX-XXXXXX-XXX-X" id="documentInput">
-                            }
-                            @else {
-                                <input type="text" class="form-control" aria-label="" id="documentInput" disabled>
-                            }
                         </div>
+                        @if (documentSeleted == "DUI") {
+                            <!-- <input type="text" class="form-control" aria-label="" placeholder="XXXXXXXX-X" id="documentInput"> -->
+                            <shared-input class="col-9 p-0" style="width: 70%;" [type]="'text'" [placeholder]="'XXXXXXXX-X'"></shared-input>
+                        }
+                        @else if (documentSeleted == "NIT") {
+                            <!-- <input type="text" class="form-control" aria-label="" placeholder="XXXX-XXXXXX-XXX-X" id="documentInput"> -->
+                            <shared-input class="col-9 p-0" style="width: 70%;" [type]="'text'" [placeholder]="'XXXX-XXXXXX-XXX-X'"></shared-input>
+                        }
+                        @else {
+                            <div class="col-8 p-0 w-50 col-sm-5 bg-black " style="width:70%">
+                                <div class="mb-3 input-group form-floating">
+                                    <input type="text" class="form-control" id="documentInput" disabled>
+                                </div>
+                            </div>
+                        }
                     </div>
                     <!--* Input Button-->
                     <div class="d-flex justify-content-center ">
-                        <input type="submit" class="btn btn-primary w-25" value="Restablecer">
+                        <input type="submit" class="btn btn-primary w-50" value="Restablecer">
                     </div>
                 </form>
             </div>
