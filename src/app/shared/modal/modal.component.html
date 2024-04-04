@@ -8,24 +8,25 @@
             <!--? Modal Title-->
             <div class="modal-header">
                 <h2 class="modal-title fs-5" id="forgotPasswordModalText">Restablecer contraseña</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <!--? Modal Body-->
             <div class="modal-body">
-                <form (ngSubmit)="onSubmit()">
+                <form [formGroup]="mFormGroup" (ngSubmit)="onSubmit()">
                     <!--* Input Email-->
                     <div class="row">
-                        <!-- <label class="form-label col-5 pt-1" for="emailInput">Email:</label>
-                        <input class="form-control w-50 col-7" type="email" pattern="[^ @]*@[^ @]*" placeholder="" id="emailInput" required> -->
                         <shared-input 
                             [type]="'email'"
+                            [formControl]="getUserEmail()"
                             [placeholder]="'Correo Electronico'"
-                            [id]="'emailInput'">
+                            [id]="'userEmail'"
+                            [formSubmitted]="formSubmitted">
                         </shared-input>
                     </div>
                     <!--* Input Document-->
-                    <div class="row mb-3 px-1">
-                        <div class="col-3 h-100 bg-danger ">
-                            <button class="btn btn-outline-secondary col-sm-12 dropdown-toggle h-100 py-3 text-start align-text-bottom border border-1 "  data-bs-toggle="dropdown" aria-expanded="false">{{documentSeleted}}</button>
+                    <div class="row mb-2">
+                        <div class="col-4 h-100">
+                            <button class="btn btn-outline-secondary dropdown-toggle h-100 py-3 text-start align-text-bottom border border-1 "  data-bs-toggle="dropdown" aria-expanded="false">{{documentSeleted}}</button>
                             <ul class="dropdown-menu">
                                 @for (document of documentList; track documentList){
                                     <li><a class="dropdown-item" href="#" (click)="onSelected(document)">{{document}}</a></li>
@@ -33,23 +34,53 @@
                             </ul>
                         </div>
                         @if (documentSeleted == "DUI") {
-                            <!-- <input type="text" class="form-control" aria-label="" placeholder="XXXXXXXX-X" id="documentInput"> -->
-                            <shared-input class="col-9 p-0" style="width: 70%;" [type]="'text'" [placeholder]="'XXXXXXXX-X'"></shared-input>
+                            <shared-input 
+                                class="col-7 p-0"
+                                [formControl]="getDocumentDUI()"  
+                                [type]="'text'" 
+                                [id]="'documentDUI'"
+                                [placeholder]="'XXXXXXXX-X'"
+                                [formSubmitted]="formSubmitted">
+                            </shared-input>
                         }
                         @else if (documentSeleted == "NIT") {
-                            <!-- <input type="text" class="form-control" aria-label="" placeholder="XXXX-XXXXXX-XXX-X" id="documentInput"> -->
-                            <shared-input class="col-9 p-0" style="width: 70%;" [type]="'text'" [placeholder]="'XXXX-XXXXXX-XXX-X'"></shared-input>
+                            <shared-input 
+                                class="col-7 p-0"
+                                [formControl]="getDocumentNIT()"  
+                                [type]="'text'"
+                                [id]="'documentNIT'" 
+                                [placeholder]="'XXXX-XXXXXX-XXX-X'"
+                                [formSubmitted]="formSubmitted">
+                            </shared-input>
                         }
                         @else {
-                            <div class="col-8 p-0 w-50 col-sm-5 bg-black " style="width:70%">
-                                <div class="mb-3 input-group form-floating">
-                                    <input type="text" class="form-control" id="documentInput" disabled>
+                            <div class="col-7 p-0">
+                                <div class="input-group mb-2">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="documentInput" disabled>
+                                    </div>
                                 </div>
                             </div>
                         }
                     </div>
+                    <!--* Mensajes -->
+                    @if (inputError == "VALID") {
+                        <div
+                            class="p-1 my-2 fs-6 text-center text-success-emphasis bg-success-subtle border border-success-subtle rounded-3">
+                            Correo de recuperación fue enviado a su correo electronico
+                        </div>
+                    }
+                    @else if (inputError !== "") {
+                        <div
+                            class="py-1 my-2 text-center text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3">
+                            Correo electronico o Documento DUI/NIT invalido.
+                        </div>
+                    }
+                    @else {
+                        <div class="py-1 my-2 bg-white text-white my-1">|</div>
+                    }
                     <!--* Input Button-->
-                    <div class="d-flex justify-content-center ">
+                    <div class="d-flex justify-content-center">
                         <input type="submit" class="btn btn-primary w-50" value="Restablecer">
                     </div>
                 </form>
