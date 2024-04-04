@@ -3,6 +3,7 @@ import {TabulatorFull as Tabulator} from 'tabulator-tables';
 import { Reporte } from '../../interfaces/reportes.interfaces';
 import { ReportesService } from '../../services/reportes.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-reportes',
@@ -11,23 +12,25 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class ReportesComponent implements OnInit{
   exTable: any;
+  ejTable:any;
   filterParam: string = '';
 
   tab = document.createElement('div');
+  tab2 = document.createElement('div')
 
   table_def = [
-    { title: 'Fecha', field: 'fecha' },
-    { title: 'Corte', field: 'corte' },
-    { title: 'Clase de Documento', field: 'claseDocumento' },
-    { title: 'Tipo de Documento', field: 'tipoDocumento' },
-    { title: 'Codigo de Generacion de DTE', field: 'codigoGeneracionDTE' },
-    { title: 'Sello de Recibido', field: 'selloRecibido' },
-    { title: 'Numero de Control', field: 'numeroControl' },
-    { title: 'NIT', field: 'NIT' },
-    { title: 'Nombre del Cliente', field: 'nombreCliente' },
-    { title: 'Ventas Exentas', field: 'ventasExentas' },
-    { title: 'Ventas no Sujetas', field: 'ventasNoSujetas' },
-    { title: 'Ventas Gravadas Locales', field: 'ventasGravadasLocales' },
+    { title: 'Fecha', field: 'fecha', width: 95 },
+    { title: 'Corte', field: 'corte', width: 95 },
+    { title: 'Clase de Documento', field: 'claseDocumento', width:170 },
+    { title: 'Tipo de Documento', field: 'tipoDocumento', width:170 },
+    { title: 'Codigo de Generacion de DTE', field: 'codigoGeneracionDTE', width: 280 },
+    { title: 'Sello de Recibido', field: 'selloRecibido', width: 320 },
+    { title: 'Numero de Control', field: 'numeroControl', width: 240 },
+    { title: 'NIT', field: 'NIT', width:120},
+    { title: 'Nombre del Cliente', field: 'nombreCliente',width: 255 },
+    { title: 'Ventas Exentas', field: 'ventasExentas', width:135 },
+    { title: 'Ventas no Sujetas', field: 'ventasNoSujetas',width: 150 },
+    { title: 'Ventas Gravadas Locales', field: 'ventasGravadasLocales', width: 195 },
     { title: 'Debito Fiscal IVA 1%', field: 'debitoFiscalIva' },
     { title: 'Ventas a Cuentas De Terceros no Domiciliados', field: 'ventasACuentaDeTercerosNoDomiciliados' },
     { title: 'Debito por Ventas a Cuentas de Terceros no Domiciliados', field: 'debitoPorVentasACuentasDeTercerosNoDomiciliados' },
@@ -40,15 +43,32 @@ export class ReportesComponent implements OnInit{
 
  
   ];
+
+  table_diario_def = [
+    { title: 'Fecha', field: 'fecha' },
+    { title: 'Tipo de Documento', field: 'tipoDocumento' },
+    { title: 'Codigo de Generacion de DTE', field: 'codigoGeneracionDTE' },
+    { title: 'Sello de Recibido', field: 'selloRecibido' },
+    { title: 'Estado', field: 'estado' },
+  ];
+   
   constructor(private reportesService: ReportesService) {}
   
   public getReporte : any;
+  public getReporteDiario: any;
+  public customDate : string = formatDate(new Date(), 'yyyy-MM-dd', 'en-US')
   
   form = new FormGroup({
     n: new FormControl('')
-  })
+  });
+
+  form2= new FormGroup({
+    fecha: new FormControl(this.customDate)
+  });
 
   ngOnInit() {  
+
+    let fecha = this.form2.value
 
     this.reportesService.getReportesTableData().subscribe(
       reporte => {
@@ -71,12 +91,33 @@ export class ReportesComponent implements OnInit{
         document.getElementById('ex-table-div')?.appendChild(this.tab);
       } 
     );
+
+    this.reportesService.getReporteDiarioTableData(fecha).subscribe(
+      reporte => {
+        this.getReporte = reporte;
+
+        this.ejTable = new Tabulator(this.tab2, {
+          height: 400,
+          layout: 'fitColumns',
+          columns: this.table_diario_def,
+          movableColumns: true,
+          pagination:true,
+          paginationMode: "local",
+          paginationSize:100,
+          paginationSizeSelector:[100, 250, 400, 500],
+          paginationCounter:"rows",
+          selectableRows: true,
+          data: this.getReporte,
+        });
+        document.getElementById('ex-table-Diario-div')?.appendChild(this.tab2);
+      } 
+    )
   }
 
   onSubmit(){
     const n = this.form.value;
     this.reportesService.postData(n).subscribe(response => {
-      console.log('respuesta de la api:', response);
+      console.log(response);
     });
   }
 
@@ -84,8 +125,14 @@ export class ReportesComponent implements OnInit{
    this.exTable.download('xlsx',"data.xlsx")
   }
 
-  downloadSelectedReport() {
-    console.log(this.getReporte);
+  downloadSelectedReport() {   
+
+    let fecha = this.form2.value
+
+    console.log(fecha);
+    
+   
+    this.ejTable.setFilter("fecha", "=", fecha)
     
   }
   

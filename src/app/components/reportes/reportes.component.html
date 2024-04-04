@@ -9,3 +9,9 @@
 </form>
 <div id="ex-table-div" class="table table-primary thead-dark table-bordered"></div>
 
+<form (ngSubmit)="downloadSelectedReport()" [formGroup]="form2">
+    <input [formControlName]="'fecha'" class="form-control" id="filter-value" type="date" onchange="downloadSelectedReport()">
+    <input type="submit" class="mt-2">
+</form>
+
+<div id="ex-table-diario-div" class="table table-primary thead-dark table-bordered"></div>

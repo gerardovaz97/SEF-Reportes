@@ -26,4 +26,10 @@ export class ReportesService {
   postData(data: any): Observable<any> {
     return this.http.post<any>(`${this.apiReportes}/api/SEF/generar`, data);
   }
+
+  getReporteDiarioTableData(data: any): Observable<any>{
+    console.log(data);
+    
+    return this.http.post<any>(`${this.apiReportes}/api/SEF/obtenerDiario`, data)
+  }
 }
