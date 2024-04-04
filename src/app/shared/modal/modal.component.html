@@ -23,9 +23,9 @@
                         </shared-input>
                     </div>
                     <!--* Input Document-->
-                    <div class="row mb-3 px-1">
-                        <div class="col-3 h-100 bg-danger ">
-                            <button class="btn btn-outline-secondary col-sm-12 dropdown-toggle h-100 py-3 text-start align-text-bottom border border-1 "  data-bs-toggle="dropdown" aria-expanded="false">{{documentSeleted}}</button>
+                    <div class="row mb-2">
+                        <div class="col-4 h-100">
+                            <button class="btn btn-outline-secondary dropdown-toggle h-100 py-3 text-start align-text-bottom border border-1 "  data-bs-toggle="dropdown" aria-expanded="false">{{documentSeleted}}</button>
                             <ul class="dropdown-menu">
                                 @for (document of documentList; track documentList){
                                     <li><a class="dropdown-item" href="#" (click)="onSelected(document)">{{document}}</a></li>
@@ -34,16 +34,18 @@
                         </div>
                         @if (documentSeleted == "DUI") {
                             <!-- <input type="text" class="form-control" aria-label="" placeholder="XXXXXXXX-X" id="documentInput"> -->
-                            <shared-input class="col-9 p-0" style="width: 70%;" [type]="'text'" [placeholder]="'XXXXXXXX-X'"></shared-input>
+                            <shared-input class="col-7 p-0"  [type]="'text'" [placeholder]="'XXXXXXXX-X'"></shared-input>
                         }
                         @else if (documentSeleted == "NIT") {
                             <!-- <input type="text" class="form-control" aria-label="" placeholder="XXXX-XXXXXX-XXX-X" id="documentInput"> -->
-                            <shared-input class="col-9 p-0" style="width: 70%;" [type]="'text'" [placeholder]="'XXXX-XXXXXX-XXX-X'"></shared-input>
+                            <shared-input class="col-7 p-0"  [type]="'text'" [placeholder]="'XXXX-XXXXXX-XXX-X'"></shared-input>
                         }
                         @else {
-                            <div class="col-8 p-0 w-50 col-sm-5 bg-black " style="width:70%">
-                                <div class="mb-3 input-group form-floating">
-                                    <input type="text" class="form-control" id="documentInput" disabled>
+                            <div class="col-7 p-0" >
+                                <div class="input-group mb-2">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="documentInput" disabled>
+                                    </div>
                                 </div>
                             </div>
                         }
