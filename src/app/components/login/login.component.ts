@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CreedentialsService } from '../../services/creedentials.service';
 import { User } from '../../interfaces/user.interface';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ReCaptcha2Component } from 'ngx-captcha';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
   protected aFormGroup: FormGroup = new FormGroup({});
 
   //* Key de Recaptcha
+  @ViewChild('captchaElement') recaptcha!: ReCaptcha2Component;
   public siteKey: string = "6LdQPKspAAAAAGxXtYbCOdaWW-RYC_VAQ4vCSk7_";
 
   //* Inyeccion de servicios
@@ -78,6 +80,8 @@ export class LoginComponent implements OnInit {
     }
     //? Credenciales incorrectas
     else {
+      this.aFormGroup.reset();
+      this.recaptcha.reloadCaptcha();
       this.inputError = "Credenciales incorrectas";
       return;
     }
