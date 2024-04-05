@@ -12,13 +12,13 @@
     <!--* Icono (eye) cambia la visibilidad del input (input password)-->
     @if (specialInput === 'password' && type === 'password') {
         <!--? Icono (ojo tachado) cuando la contraseña esta oculta-->
-        <div class="bg-light px-2 border border-1">
+        <div class="bg-light px-2 py-2 border border-1">
             <i (click)="changeType()" class="bi bi-eye-slash text-black " style="font-size: 1.5em; color: #007bff;"></i>
         </div>
     }
     @else if (specialInput === 'password' && type === 'text') {
         <!--? Icono (ojo completo) cuando la contraseña esta visible-->
-        <div class="bg-light px-2 border border-1">
+        <div class="bg-light px-2 py-2 border border-1">
             <i (click)="changeType()" class="bi bi-eye-fill text-black" style="font-size: 1.5em; color: #007bff;"></i>
         </div>
     }

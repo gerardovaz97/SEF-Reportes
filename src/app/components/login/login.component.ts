@@ -8,7 +8,7 @@ import { ReCaptcha2Component } from 'ngx-captcha';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
 })
 export class LoginComponent implements OnInit {
 
@@ -48,8 +48,8 @@ export class LoginComponent implements OnInit {
 
   //* Controles del formulario
   public formSubmitted: boolean = false;
-  getUsername(): any{ return this.aFormGroup.get('username'); }
-  getPassword(): any{ return this.aFormGroup.get('password'); }
+  getUsername(): any{ return this.aFormGroup.get('username') as FormControl; }
+  getPassword(): any{ return this.aFormGroup.get('password') as FormControl; }
 
   //* Funcion que se ejecuta cuando el evento Submit del Form (form) es ejecutado
   onSubmit() {
@@ -70,13 +70,11 @@ export class LoginComponent implements OnInit {
     if (passAuth.length == 1) {
       this.router.navigate(['reportes'])
       this.formSubmitted = false;
-      return;
     }
     //? Credenciales incorrectas
     else {
       this.aFormGroup.reset();
       this.inputError = "Credenciales incorrectas";
-      return;
     }
   }
 }
