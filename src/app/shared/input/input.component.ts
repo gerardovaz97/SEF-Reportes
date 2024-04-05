@@ -1,12 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, NgModel } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormControl} from '@angular/forms';
 
 @Component({
   selector: 'shared-input',
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss'
 })
-export class InputComponent implements OnInit{
+export class InputComponent{
 
   //* Placeholder de Inputs (opcional)
   @Input() public placeholder?: string;
@@ -23,9 +23,6 @@ export class InputComponent implements OnInit{
   //* Value para la salida de datos al form (opcional)
   @Output() public value = new EventEmitter<string>();
 
-
-  ngOnInit(): void {
-  }
 
   //* Funcion de cambio a la visualizacion (input type: password)
   changeType(): void{
