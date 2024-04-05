@@ -81,7 +81,6 @@ export class LoginComponent implements OnInit {
     //? Credenciales incorrectas
     else {
       this.aFormGroup.reset();
-      this.recaptcha.reloadCaptcha();
       this.inputError = "Credenciales incorrectas";
       return;
     }

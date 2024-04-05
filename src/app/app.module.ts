@@ -15,6 +15,7 @@ import { TabulatorTablesComponent } from './components/tabulator-tables/tabulato
 import { ModalComponent } from './shared/modal/modal.component';
 import { InputComponent } from './shared/input/input.component';
 import { ImageComponent } from './shared/image/image.component';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ImageComponent } from './shared/image/image.component';
     TabulatorTablesComponent,
     ModalComponent,
     InputComponent,
-    ImageComponent
+    ImageComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
