@@ -15,12 +15,12 @@ export class LoginComponent implements OnInit {
   //* Parametro local donde almacena los usuarios que son consumidos del API por el service
   public getUser: User[] = [];
 
-  //* Inicializando FormGroup para el Login
-  protected aFormGroup: FormGroup = new FormGroup({});
-
   //* Key de Recaptcha
   @ViewChild('captchaElement') recaptcha!: ReCaptcha2Component;
   public siteKey: string = "6LdQPKspAAAAAGxXtYbCOdaWW-RYC_VAQ4vCSk7_";
+
+  //* Inicializando FormGroup para el Login
+  protected aFormGroup: FormGroup = new FormGroup({});
 
   //* Inyeccion de servicios
   constructor(
@@ -36,8 +36,7 @@ export class LoginComponent implements OnInit {
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
       recaptcha: ['', Validators.required]
-    })
-
+    });
     //? Subscripcion al Observable para que mande la peticion a la API y obtener todos los usuarios almacenados
     this.creedentialService.getUserCredentials().subscribe(
       users => {
@@ -49,13 +48,8 @@ export class LoginComponent implements OnInit {
 
   //* Controles del formulario
   public formSubmitted: boolean = false;
-
-  getUsername(): any{
-    return this.aFormGroup.get('username');
-  }
-  getPassword(): any{
-    return this.aFormGroup.get('password');
-  }
+  getUsername(): any{ return this.aFormGroup.get('username'); }
+  getPassword(): any{ return this.aFormGroup.get('password'); }
 
   //* Funcion que se ejecuta cuando el evento Submit del Form (form) es ejecutado
   onSubmit() {
@@ -71,7 +65,7 @@ export class LoginComponent implements OnInit {
   creedentialsInputValidation(username: string, password: string): void{
     const userAuth = this.getUser.filter( _creedentials => username === _creedentials.user);
     const passAuth = userAuth.filter(_creedentials => password === _creedentials.password);
-
+    
     //? Validacion de credenciales correctas
     if (passAuth.length == 1) {
       this.router.navigate(['reportes'])

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'shared-input',
@@ -18,8 +18,11 @@ export class InputComponent implements OnInit{
   @Input() public formControl!: FormControl;
   //* FormSubmitted para form dinamicos (opcional)
   @Input() public formSubmitted?: boolean;
+  //* SpecialInput para inputs con funciones especiales adicionales (opcional)
+  @Input() public specialInput?: string;
   //* Value para la salida de datos al form (opcional)
   @Output() public value = new EventEmitter<string>();
+
 
   ngOnInit(): void {
   }
