@@ -10,8 +10,16 @@
 <div id="ex-table-div" class="table table-primary thead-dark table-bordered"></div>
 
 <form (ngSubmit)="downloadSelectedReport()" [formGroup]="form2">
-    <input [formControlName]="'fecha'" class="form-control" id="filter-value" type="date" >
+    <input [formControlName]="'fecha'" class="form-control" type="date" (change)="downloadSelectedReport()" >
     <input type="submit" class="mt-2">
 </form>
+
+
+<select id="filter-field"  [(ngModel)]="seleccionado" (change)="sleccionado()">
+    <option>Seleccione una opcion</option>
+    <option value="PROCESADO">PROCESADO</option>
+    <option value="RECHAZADO">RECHAZADO</option>
+</select>
+
 
 <div id="ex-table-diario-div" class="table table-primary thead-dark table-bordered"></div>

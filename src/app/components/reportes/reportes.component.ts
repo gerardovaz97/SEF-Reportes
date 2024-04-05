@@ -57,6 +57,9 @@ export class ReportesComponent implements OnInit{
   public getReporte : any;
   public getReporteDiario: any;
   public customDate : string = formatDate(new Date(), 'yyyy-MM-dd', 'en-US')
+  seleccionado : string = "";
+  verSeleccion: string = ""
+  
   
   form = new FormGroup({
     n: new FormControl('')
@@ -66,9 +69,11 @@ export class ReportesComponent implements OnInit{
     fecha: new FormControl(this.customDate)
   });
 
-  ngOnInit() {  
+  form3= new FormGroup({
+    estado: new FormControl("")
+  });
 
-    
+  ngOnInit() {    
     this.renderReporteMensual()
     
     this.renderReporteDiario()
@@ -78,7 +83,6 @@ export class ReportesComponent implements OnInit{
   onSubmit(){
     const n = this.form.value;
     this.reportesService.postData(n).subscribe(response => {
-      console.log(response);
     });
   }
 
@@ -141,12 +145,20 @@ export class ReportesComponent implements OnInit{
           selectableRows: true,
           data: this.getReporte,
         });
-       console.log('====================================');
-       console.log(this.getReporte);
-       console.log('====================================');
+
         document.getElementById('ex-table-diario-div')?.appendChild(this.tab2);
       } 
     )
+  }
+
+  sleccionado(){
+    this.verSeleccion = this.seleccionado
+
+    if(this.verSeleccion != "Seleccione una opcion" ){
+        this.ejTable.setFilter("estado", "=", this.verSeleccion)
+    } else {
+        this.renderReporteDiario()
+    }
   }
   
 }
