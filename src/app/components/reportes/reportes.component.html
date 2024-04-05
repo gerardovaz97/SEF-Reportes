@@ -10,7 +10,7 @@
 <div id="ex-table-div" class="table table-primary thead-dark table-bordered"></div>
 
 <form (ngSubmit)="downloadSelectedReport()" [formGroup]="form2">
-    <input [formControlName]="'fecha'" class="form-control" id="filter-value" type="date" onchange="downloadSelectedReport()">
+    <input [formControlName]="'fecha'" class="form-control" id="filter-value" type="date" >
     <input type="submit" class="mt-2">
 </form>
 
