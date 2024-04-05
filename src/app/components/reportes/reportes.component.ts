@@ -46,7 +46,7 @@ export class ReportesComponent implements OnInit{
 
   table_diario_def = [
     { title: 'Fecha', field: 'fecha' },
-    { title: 'Clase de Documento', field: 'claseDocumento' },
+    { title: 'Codigo de Generacion de DTE', field: 'codigoGeneracionDTE'},
     { title: 'Tipo de Documento', field: 'tipoDocumento' },
     { title: 'Sello de Recibido', field: 'selloRecibido' },
     { title: 'Estado', field: 'estado' },
@@ -68,8 +68,36 @@ export class ReportesComponent implements OnInit{
 
   ngOnInit() {  
 
-    let fecha = this.form2.value
+    
+    this.renderReporteMensual()
+    
+    this.renderReporteDiario()
+   
+  }
 
+  onSubmit(){
+    const n = this.form.value;
+    this.reportesService.postData(n).subscribe(response => {
+      console.log(response);
+    });
+  }
+
+  downloadReport(){
+   this.exTable.download('xlsx',"data.xlsx")
+  }
+
+  downloadSelectedReport() {   
+
+    const fecha = this.form2.value.fecha
+
+    this.renderReporteDiario()
+
+    this.exTable.setFilter("fecha", "=", fecha)
+    
+  }
+  
+
+  renderReporteMensual(){
     this.reportesService.getReportesTableData().subscribe(
       reporte => {
         this.getReporte = reporte;
@@ -88,10 +116,14 @@ export class ReportesComponent implements OnInit{
           selectableRows: true,
           data: this.getReporte,
         });
+        
         document.getElementById('ex-table-div')?.appendChild(this.tab);
       } 
     );
+  }
 
+  renderReporteDiario(){
+    let fecha = this.form2.value
     this.reportesService.getReporteDiarioTableData(fecha).subscribe(
       reporte => {
         this.getReporte = reporte;
@@ -109,57 +141,12 @@ export class ReportesComponent implements OnInit{
           selectableRows: true,
           data: this.getReporte,
         });
-        console.log(this.getReporte);
+       console.log('====================================');
+       console.log(this.getReporte);
+       console.log('====================================');
         document.getElementById('ex-table-diario-div')?.appendChild(this.tab2);
       } 
     )
   }
-
-  onSubmit(){
-    const n = this.form.value;
-    this.reportesService.postData(n).subscribe(response => {
-      console.log(response);
-    });
-  }
-
-  downloadReport(){
-   this.exTable.download('xlsx',"data.xlsx")
-  }
-
-  downloadSelectedReport() {   
-
-    let fecha = this.form2.value
-
-    console.log(fecha);
-    console.log('====================================');
-    console.log(this.customDate);
-    console.log('====================================');
-    
-    this.reportesService.getReporteDiarioTableData(fecha).subscribe(
-      reporte => {
-      this.getReporte = reporte;
-
-      this.ejTable = new Tabulator(this.tab2, {
-        height: 400,
-        layout: 'fitColumns',
-        columns: this.table_diario_def,
-        movableColumns: true,
-        pagination:true,
-        paginationMode: "local",
-        paginationSize:100,
-        paginationSizeSelector:[100, 250, 400, 500],
-        paginationCounter:"rows",
-        selectableRows: true,
-        data: this.getReporte,
-      });
-
-      console.log(this.getReporte);
-      
-      document.getElementById('ex-table-Diario-div')?.appendChild(this.tab2);
-    } )
-    this.ejTable.setFilter("fecha", "=", fecha)
-    
-  }
-  
   
 }
