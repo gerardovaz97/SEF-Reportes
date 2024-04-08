@@ -57,7 +57,7 @@ export class ReportesComponent implements OnInit{
   public getReporte : any;
   public getReporteDiario: any;
   public customDate : string = formatDate(new Date(), 'yyyy-MM-dd', 'en-US')
-  seleccionado : string = "";
+  seleccionado : string = "Seleccione una opcion";
   verSeleccion: string = ""
   
   
@@ -145,6 +145,9 @@ export class ReportesComponent implements OnInit{
           selectableRows: true,
           data: this.getReporte,
         });
+
+        console.log(this.getReporte);
+        
 
         document.getElementById('ex-table-diario-div')?.appendChild(this.tab2);
       } 

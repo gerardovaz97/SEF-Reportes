@@ -11,7 +11,6 @@ import { NavComponent } from './shared/nav/nav.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { ReportesComponent } from './components/reportes/reportes.component';
 import { LoginComponent } from './components/login/login.component';
-import { TabulatorTablesComponent } from './components/tabulator-tables/tabulator-tables.component';
 import { ModalComponent } from './shared/modal/modal.component';
 import { InputComponent } from './shared/input/input.component';
 import { ImageComponent } from './shared/image/image.component';
@@ -25,7 +24,6 @@ import { ChangepassComponent } from './components/changepass/changepass.componen
     SidebarComponent,
     ReportesComponent,
     LoginComponent,
-    TabulatorTablesComponent,
     ModalComponent,
     InputComponent,
     ImageComponent,
