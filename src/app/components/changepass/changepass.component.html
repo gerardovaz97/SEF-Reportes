@@ -11,13 +11,13 @@
         </div>
         <hr class="border-2">
         <!--* Form Section-->
-        <form [formGroup]="fFormGroup" (ngSubmit)="onSubmit()">
+        <form [formGroup]="aFormGroup" (ngSubmit)="onSubmit()">
             <div class="w-75 mx-auto">
                 <shared-input 
+                    [formControl]="getNewPass()"
                     [type]="'password'"
                     [id]="'newPassword'"
                     [placeholder]="'Contraseña Nueva'"
-                    [formControl]="newPasswordControl"
                     [specialInput]="'password'"
                     [formSubmitted]="formSubmitted">
                 </shared-input>
@@ -25,9 +25,9 @@
             <div class="w-75 mx-auto mb-3">
                 <shared-input 
                     [type]="'password'"
+                    [formControl]="getRepeatPass()"   
                     [id]="'repeatPassword'"
                     [placeholder]="'Repetir contraseña nueva'"
-                    [formControl]="repeatPasswordControl"
                     [specialInput]="'password'"
                     [formSubmitted]="formSubmitted">
                 </shared-input>
@@ -45,7 +45,7 @@
             }
             <!--? Input: Boton-->
             <div class="input-group my-3">
-                <input type="submit" class="form-control btn btn-primary" value="Ingresar" [disabled]="!fFormGroup.valid" disabled>
+                <input type="submit" id="btnChange" class="form-control btn btn-primary" value="Ingresar" [disabled]="!aFormGroup.valid" disabled>
             </div>
         </form>
     </div>

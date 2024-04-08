@@ -27,7 +27,9 @@ export class LoginComponent implements OnInit {
     private creedentialService: CreedentialsService,
     private router: Router,
     private formBuilder: FormBuilder
-  ) { }
+  ) {
+    
+   }
 
   //* Codigo que se inicializa junto al componente
   ngOnInit(): void {
