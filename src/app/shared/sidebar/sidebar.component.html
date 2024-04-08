@@ -1,1 +1,33 @@
-<p>sidebar works!</p>
+<!--TODO: Sidebar Component-->
+<div class="flex-shrink-0 h-100 p-2" class="sidebar">
+    <!--* Sidebar Header-->
+    <a [href]="'reportes/dte-reportes'" class="d-flex align-items-center py-3 mb-3 px-3 link-light text-decoration-none border-bottom">
+        <img src="./assets/images/logo_icon.png" alt="Logo PBS" width="40vh" class="me-2">
+        <span class="fs-5 mx-3 fw-semibold">SEF</span>
+    </a>
+    <!--* Sidebar Body-->
+    <ul class="list-unstyled px-4 py-2">
+        <!--? Reporteria List-->
+        <li class="mb-3 row">
+            <i class="bi bi-file-earmark-richtext col-1" style="font-size: 1.4em; color: #ffffff;"></i>
+            <button 
+                class="btn btn-toggle align-items-center rounded text-light d-flex align-items-center col-10"
+                data-bs-toggle="collapse" data-bs-target="#reportesdiarios-collapse" 
+                aria-expanded="false" style="font-size: 0.9em; color: #ffffff;">
+            <i class="bi bi-caret-right-fill mx-2"></i>
+            <span>Reportes Diarios</span>
+            </button>
+            <div class="collapse" id="reportesdiarios-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal small d-flex align-items-start flex-column ">
+                    <li class="sublist">
+                        <a href="#" class="link-light rounded text-decoration-none">Reporteria Diaria</a>
+                    </li>
+                    <li class="sublist">
+                        <a href="#" class="link-light rounded text-decoration-none">Reporteria Mensual</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        
+    </ul>
+</div>

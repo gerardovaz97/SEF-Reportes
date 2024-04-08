@@ -67,10 +67,14 @@ export class LoginComponent implements OnInit {
   creedentialsInputValidation(username: string, password: string): void{
     const userAuth = this.getUser.filter( _creedentials => username === _creedentials.user);
     const passAuth = userAuth.filter(_creedentials => password === _creedentials.password);
+    console.log(this.aFormGroup.get('username')?.status);
+    console.log(this.aFormGroup.get('password')?.status);
+    console.log(this.aFormGroup.get('recaptcha')?.status);
+    
     
     //? Validacion de credenciales correctas
     if (passAuth.length == 1) {
-      this.router.navigate(['reportes'])
+      this.router.navigate(['reportes/dte-reportes']);
       this.formSubmitted = false;
     }
     //? Credenciales incorrectas

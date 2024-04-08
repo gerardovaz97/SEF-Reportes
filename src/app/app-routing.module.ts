@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ReportesComponent } from './components/reportes/reportes.component';
 import { LoginComponent } from './components/login/login.component';
 import { ChangepassComponent } from './components/changepass/changepass.component';
 
@@ -16,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'reportes', 
-    component: ReportesComponent,
+    loadChildren: ()=> import('./pages/reportes-routing.module').then(m => m.SEFReportesRoutingModule),
   },
   {
     path: 'changepass',

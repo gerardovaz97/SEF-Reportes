@@ -1,0 +1,11 @@
+.sidebar {
+    width: 18rem;
+    height: 100%;
+    background-color: #064280;
+}
+.btn-toggle[aria-expanded="true"] ::before{
+    transform: rotate(90deg);
+}
+.sublist {
+    padding-left: 10vh;
+}
