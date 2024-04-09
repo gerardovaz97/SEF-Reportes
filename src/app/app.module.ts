@@ -15,6 +15,8 @@ import { ModalComponent } from './shared/modal/modal.component';
 import { InputComponent } from './shared/input/input.component';
 import { ImageComponent } from './shared/image/image.component';
 import { ChangepassComponent } from './components/changepass/changepass.component';
+import { ReportesPageComponent } from './pages/reportes-page/reportes-page.component';
+import { SEFReportesRoutingModule } from './pages/reportes-routing.module';
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { ChangepassComponent } from './components/changepass/changepass.componen
     ModalComponent,
     InputComponent,
     ImageComponent,
-    ChangepassComponent
+    ChangepassComponent,
+    ReportesPageComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import { ChangepassComponent } from './components/changepass/changepass.componen
     FormsModule,
     ReactiveFormsModule,
     NgxCaptchaModule,
+    SEFReportesRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
