@@ -12,10 +12,31 @@ import { formatDate } from '@angular/common';
 })
 export class ReportesComponent implements OnInit{
   exTable: any;
+
   ejTable:any;
+
   filterParam: string = '';
 
+  public getReporte : any;
+  public getReporteDiario: any;
+  public customDate : string = formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
+  seleccionado : string = "Seleccione una opcion";
+  verSeleccion: string = ""
+  
+  form = new FormGroup({
+    n: new FormControl('')
+  });
+  
+  form2= new FormGroup({
+    fecha: new FormControl(this.customDate)
+  });
+  
+  form3= new FormGroup({
+    estado: new FormControl("")
+  });
+  
   tab = document.createElement('div');
+  
   tab2 = document.createElement('div')
 
   table_def = [
@@ -45,33 +66,15 @@ export class ReportesComponent implements OnInit{
   ];
 
   table_diario_def = [
-    { title: 'Fecha', field: 'fecha' },
-    { title: 'Codigo de Generacion de DTE', field: 'codigoGeneracionDTE'},
-    { title: 'Tipo de Documento', field: 'tipoDocumento' },
-    { title: 'Sello de Recibido', field: 'selloRecibido' },
-    { title: 'Estado', field: 'estado' },
+    { title: 'Fecha', field: 'identificacion.fecEmi' },
+    { title: 'Codigo de Generacion de DTE', field: 'codigoGeneracion'},
+    { title: 'Tipo de Documento', field: 'identificacion.tipoDte' },
+    { title: 'Sello de Recibido', field: 'responseMH.selloRecibido' },
+    { title: 'Estado', field: 'responseMH.estado' },
   ];
    
-  constructor(private reportesService: ReportesService) {}
+  constructor(private reportesService: ReportesService) {}  
   
-  public getReporte : any;
-  public getReporteDiario: any;
-  public customDate : string = formatDate(new Date(), 'yyyy-MM-dd', 'en-US')
-  seleccionado : string = "Seleccione una opcion";
-  verSeleccion: string = ""
-  
-  
-  form = new FormGroup({
-    n: new FormControl('')
-  });
-
-  form2= new FormGroup({
-    fecha: new FormControl(this.customDate)
-  });
-
-  form3= new FormGroup({
-    estado: new FormControl("")
-  });
 
   ngOnInit() {    
     this.renderReporteMensual()
@@ -130,7 +133,7 @@ export class ReportesComponent implements OnInit{
     let fecha = this.form2.value
     this.reportesService.getReporteDiarioTableData(fecha).subscribe(
       reporte => {
-        this.getReporte = reporte;
+        this.getReporte = reporte;        
 
         this.ejTable = new Tabulator(this.tab2, {
           height: 400,
@@ -158,7 +161,7 @@ export class ReportesComponent implements OnInit{
     this.verSeleccion = this.seleccionado
 
     if(this.verSeleccion != "Seleccione una opcion" ){
-        this.ejTable.setFilter("estado", "=", this.verSeleccion)
+        this.ejTable.setFilter("responseMH.estado", "=", this.verSeleccion)
     } else {
         this.renderReporteDiario()
     }

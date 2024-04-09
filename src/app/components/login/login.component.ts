@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
 
   //* Parametro local donde almacena los usuarios que son consumidos del API por el service
   public getUser: User[] = [];
+  public getUsers: any = []
 
   //* Key de Recaptcha
   @ViewChild('captchaElement') recaptcha!: ReCaptcha2Component;
@@ -46,6 +47,14 @@ export class LoginComponent implements OnInit {
         console.log(this.getUser);
       }
     );
+
+    this.creedentialService.getUsers2Request().subscribe(
+      usuarios => {
+        this.getUsers = usuarios,
+       console.log(usuarios);
+       
+      }
+    )
   }
 
   //* Controles del formulario
