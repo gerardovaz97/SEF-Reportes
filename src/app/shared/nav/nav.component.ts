@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrl: './nav.component.scss'
 })
 export class NavComponent {
+  protected usr_nombre?: string = "Damaya";
 
 }

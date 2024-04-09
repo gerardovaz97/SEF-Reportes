@@ -1,11 +1,12 @@
 .sidebar {
-    width: 18rem;
     height: 100%;
+    width: 15rem;
     background-color: #064280;
 }
 .btn-toggle[aria-expanded="true"] ::before{
     transform: rotate(90deg);
 }
 .sublist {
-    padding-left: 10vh;
+    margin: 0.8vh 5vh;
+    padding-left: 1.2vh;
 }

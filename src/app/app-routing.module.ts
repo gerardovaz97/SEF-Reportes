@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { LoginComponent } from './components/login/login.component';
 import { ChangepassComponent } from './components/changepass/changepass.component';
+import { rutas } from './pages/reportes-routing.module';
+import { ReportesPageComponent } from './pages/reportes-page/reportes-page.component';
 
 const routes: Routes = [
   {
@@ -15,7 +17,8 @@ const routes: Routes = [
   },
   {
     path: 'reportes', 
-    loadChildren: ()=> import('./pages/reportes-routing.module').then(m => m.SEFReportesRoutingModule),
+    children: rutas,
+    component: ReportesPageComponent,
   },
   {
     path: 'changepass',

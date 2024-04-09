@@ -1,15 +1,20 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { ReportesPageComponent } from "../pages/reportes-page/reportes-page.component";
+import { ChangepassComponent } from "../components/changepass/changepass.component";
+import { ReportesComponent } from "../components/reportes/reportes.component";
 
-const routes: Routes = [
+export const rutas: Routes = [
     {
         path:'dte-reportes',
-        component: ReportesPageComponent,
+        component: ReportesComponent,
+    },
+    {
+        path: 'changepass',
+        component: ChangepassComponent,
     }
 ]
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
+    imports: [RouterModule.forChild(rutas)],
     exports: [RouterModule]
 })
 export class SEFReportesRoutingModule {}

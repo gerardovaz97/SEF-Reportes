@@ -1,29 +1,53 @@
-<!--TODO: Sidebar Component-->
-<div class="flex-shrink-0 h-100 p-2" class="sidebar">
-    <!--* Sidebar Header-->
-    <a [href]="'reportes/dte-reportes'" class="d-flex align-items-center py-3 mb-3 px-3 link-light text-decoration-none border-bottom">
-        <img src="./assets/images/logo_icon.png" alt="Logo PBS" width="40vh" class="me-2">
-        <span class="fs-5 mx-3 fw-semibold">SEF</span>
+<!-- TODO: Sidebar Component -->
+<div class="sidebar flex-shrink-0">
+    <!-- * Sidebar Header -->
+    <a [href]="'reportes/dte-reportes'" class="d-flex align-items-center py-3 mb-3 px-3 link-light text-decoration-none">
+        <img src="./assets/images/logo_icon.png" alt="Logo PBS" width="38vh" class="me-2">
+        <span class="fs-5 mx-3 mt-2 fw-semibold">SEF</span>
     </a>
-    <!--* Sidebar Body-->
-    <ul class="list-unstyled px-4 py-2">
-        <!--? Reporteria List-->
+    <div class="px-2">
+        <hr class="text-light">
+    </div>
+    <!-- * Sidebar Body -->
+    <ul class="list-unstyled px-3 py-2">
+        <!-- ? Reporteria List -->
         <li class="mb-3 row">
             <i class="bi bi-file-earmark-richtext col-1" style="font-size: 1.4em; color: #ffffff;"></i>
             <button 
-                class="btn btn-toggle align-items-center rounded text-light d-flex align-items-center col-10"
+                class="btn btn-toggle align-items-center rounded text-light d-flex align-items-center col-auto"
                 data-bs-toggle="collapse" data-bs-target="#reportesdiarios-collapse" 
                 aria-expanded="false" style="font-size: 0.9em; color: #ffffff;">
-            <i class="bi bi-caret-right-fill mx-2"></i>
-            <span>Reportes Diarios</span>
+            <span class="px-2">Reportes Diarios</span>
+            <i class="bi bi-caret-right-fill mx-1"></i>
             </button>
             <div class="collapse" id="reportesdiarios-collapse">
                 <ul class="btn-toggle-nav list-unstyled fw-normal small d-flex align-items-start flex-column ">
                     <li class="sublist">
-                        <a href="#" class="link-light rounded text-decoration-none">Reporteria Diaria</a>
+                        <a routerLink="/reportes/dte-reportes" routerLinkActive="active" class="link-light rounded text-decoration-none">Reporteria Diaria</a>
                     </li>
                     <li class="sublist">
-                        <a href="#" class="link-light rounded text-decoration-none">Reporteria Mensual</a>
+                        <a routerLink="/reportes/changepass" routerLinkActive="active" class="link-light rounded text-decoration-none">Reporteria Mensual</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="mb-3 row">
+            <i class="bi bi-file-earmark-richtext col-1" style="font-size: 1.4em; color: #ffffff;"></i>
+            <button 
+                class="btn btn-toggle align-items-center rounded text-light d-flex align-items-center col-auto"
+                data-bs-toggle="collapse" data-bs-target="#testlist-collapse" 
+                aria-expanded="false" style="font-size: 0.9em; color: #ffffff;">
+            <span class="px-2">Test List</span>
+            <i class="bi bi-caret-right-fill mx-1"></i>
+            </button>
+            <div class="collapse" id="testlist-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal small d-flex align-items-start flex-column ">
+                    <li class="sublist">
+                        <a routerLink="/reportes/dte-reportes" routerLinkActive="active" class="link-light rounded text-decoration-none">Reporteria Diaria</a>
+                    </li>
+                    <li class="sublist">
+                        <a routerLink="/reportes/changepass" routerLinkActive="active" class="link-light rounded text-decoration-none">Reporteria Mensual</a>
                     </li>
                 </ul>
             </div>
