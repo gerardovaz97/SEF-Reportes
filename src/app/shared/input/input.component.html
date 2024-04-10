@@ -7,35 +7,36 @@
                 class="form-control" 
                 [id]="id" 
                 [formControl]="control" 
-                [type]="type" placeholder 
+                [type]="type" 
+                placeholder 
                 [required]="required"
                 [readOnly]="readOnly"
-                [ngClass]="{'border-danger-subtle border-2':control.hasError('required') && formSubmitted}">
+                [ngClass]="{'border-danger-subtle border-2': messageError != '' && formSubmitted}">
             <!--! FLOATING PLACEHOLDER ELEMENT-->
             <label [for]="id">{{label}}</label>
         </div>
         <!--! EYE ICON ELEMENT (password)-->
-        @if (id === 'usr_password' && type === 'password') {
+        @if (specialInput === 'inputPassword' && type === 'password') {
             <!-- ? Icono (ojo tachado) cuando la contraseña esta oculta -->
             <div class="bg-light px-2 py-2 border border-1">
             <i (click)="changeType()" class="bi bi-eye-slash text-black " style="font-size: 1.5em; color: #007bff;"></i>
             </div>
         }
-        @else if (id === 'usr_password' && type === 'text') {
+        @else if (specialInput === 'inputPassword' && type === 'text') {
             <!-- ? Icono (ojo completo) cuando la contraseña esta visible -->
             <div class="bg-light px-2 py-2 border border-1">
                 <i (click)="changeType()" class="bi bi-eye-fill text-black" style="font-size: 1.5em; color: #007bff;"></i>
             </div>
         }
     </div>
-    <!--! CAMPOS LLENOS VALIDATION-->
-     <!-- <ng-container>
-        @if (control.hasError('required') && formSubmitted) {
+    <!--! CAMPOS VALIDACION DE USUARIOS-->
+    <ng-container>
+        @if (messageError != "" && formSubmitted) {
         <div class="p-1 text-center text-danger-emphasis bg-danger-subtle border border-danger-subtle">
-            El campo {{label}} es requerido
+            {{messageError}}
         </div>
         }
-    </ng-container> -->
+    </ng-container>
 </div>
 
 

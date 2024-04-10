@@ -11,7 +11,7 @@ export class ChangepassComponent implements OnInit{
   protected lblFormText: string = "Es necesario que primero establezcas tu contraseña, para que puedas acceder a tu cuenta";
 
   //* Inicializando FormGroup para el Login
-  protected aFormGroup: FormGroup = new FormGroup({});
+  nFormGroup!: FormGroup;
 
 
   //* Inyeccion de Servicios
@@ -20,30 +20,28 @@ export class ChangepassComponent implements OnInit{
   //* Codigo que se inicializa junto al componente
   ngOnInit(): void {
     //? Conjunto de componentes del FormGroup con validaciones y almacenamiento de datos del form
-    this.aFormGroup = this.formBuilder.group({
-      newpass: new FormControl('', Validators.required),
-      repeatpass: new FormControl('', Validators.required),
+    this.createForm();
+  }
+  createForm(){
+    this.nFormGroup = this.formBuilder.group({
+      new_password: new FormControl('', Validators.required),
+      repeat_password: new FormControl('', Validators.required),
     })
   }
 
   //* Controles del formulario
   public formSubmitted: boolean = false;
-  getNewPass(): any{ return this.aFormGroup.get('newpass') as FormControl; }
-  getRepeatPass(): any{ return this.aFormGroup.get('repeatpass') as FormControl; }
 
-  onSubmit() {
-    const { newpass, repeatpass } = this.aFormGroup.value;
+  onSubmit(form:any) {
     this.formSubmitted = true;
-    this.newPasswordValidation(newpass, repeatpass);
-    console.log(newpass, repeatpass);
-    
+    this.newPasswordValidation(form); 
   }
   //* Variable de validacion de credenciales y formulario
-  inputError: string = "";
+  messageError: string = "";
 
-  newPasswordValidation(newPassword: string, repeatPassword: string): void {
+  newPasswordValidation(form: any): void {
     console.log();
     //! FUNCIONALIDAD DE CAMBIO DE CONTRASEÑA
-    this.inputError = "NULL";
+    this.messageError = "NULL";
   }
 }

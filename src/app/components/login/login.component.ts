@@ -12,11 +12,12 @@ import { ReCaptcha2Component } from 'ngx-captcha';
 })
 export class LoginComponent implements OnInit {
 
-  //* Parametro local donde almacena los usuarios que son consumidos del API por el service (ELIMINAR)
+  //* Parametro local donde almacena los usuarios que son consumidos del API por el service
+  //TODO: CAMBIAR DE ANY A UNA INTERFAZ DE TIPO USUARIO CUANDO SE SEPA QUE DATOS OCUPAR
   public getUsers: any = []
 
   //* Key de Recaptcha
-  @ViewChild('captchaElement') recaptcha!: ReCaptcha2Component;
+  @ViewChild('captchaElemen') captchaElemen!: ReCaptcha2Component;
   public siteKey: string = "6LdQPKspAAAAAGxXtYbCOdaWW-RYC_VAQ4vCSk7_";
 
   //* Inicializando FormGroup para el Login
@@ -31,52 +32,50 @@ export class LoginComponent implements OnInit {
 
   //* Codigo que se inicializa junto al componente
   ngOnInit(): void {
-    //? Llamado a la creacion del form (new code)
+    //? Llamado a la creacion del form
     this.createForm();
-
-    // this.creedentialService.getUsers2Request().subscribe(
-    //   usuarios => {
-    //     this.getUsers = usuarios;
-    //    console.log(usuarios);
-       
-    //   })
-    
   }
-  //* Funcion de creacion de Formulario (new code)
+  //* Funcion de creacion de Formulario
   createForm(){
     this.aFormGroup = this.formBuilder.group({
       usr_name: new FormControl('', Validators.required),
       usr_password: new FormControl('', Validators.required),
-      recaptcha: ['', Validators.required]
+      captchaElemen: ['', Validators.required]
     })
   }
-
+  //* Reset del Captcha al onSubmit
+  captchaReset(){ this.captchaElemen.resetCaptcha();}
+  //* Bandera detectora de onSubmit del form
   public formSubmitted: boolean = false;
 
   //* Funcion que se ejecuta cuando el evento Submit del Form (form) es ejecutado
   onSubmit( form: any ) {
     //? Activacion de validadores del Submit
     this.formSubmitted = true;
-
     //? Envio de Formulario Validador de Credenciales
     this.creedentialsInputValidation(form);
+
   }
 
   //* Variable de validacion de credenciales y formulario
-  inputError: string = "";
+  //TODO: VERIFICAR LUEGO
+  public messageError: string = "";
 
-  creedentialsInputValidation(form: any): void{
+  creedentialsInputValidation(form: any): any{
     this.creedentialService.postUserCredentials(form).subscribe(
       user => {
-        
+        //? Verificando si la respuesta contiene mensaje de error sobre la peticion
         if(user.msg){
-          console.log(user.msg);
+          //? Reset del Captcha
+          this.aFormGroup.reset();
+          this.captchaReset();
+          this.messageError = user.msg;
           return;
         }
-        console.log(user[0]);
+        console.log(user);
+        
         this.router.navigate(['reportes/dte-reportes'])
-        
-        
+        return;
       }
     )
   }

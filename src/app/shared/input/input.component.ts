@@ -8,34 +8,30 @@ import { FormControl} from '@angular/forms';
 })
 export class InputComponent implements OnInit{
 
-  // //* Placeholder de Inputs (opcional)
-  // @Input() public placeholder?: string;
-  // //* Type de Inputs (obligatorio)
-  // @Input() public type: string = "";
-  // //* Id de Inputs (obligatorio)
-  // @Input() public id: string = "";
-  // //* FormControl de Inputs (opcional)
-  // @Input() public formControl!: FormControl;
-  // //* FormSubmitted para form dinamicos (opcional)
-  // @Input() public formSubmitted?: boolean;
-  // //* SpecialInput para inputs con funciones especiales adicionales (opcional)
-  // @Input() public specialInput?: string;
-  // //* Value para la salida de datos al form (opcional)
-  // @Output() public value = new EventEmitter<string>();
-
-  //* FormControl del Input (obligatorio)
+  //* FormControl del Input (obligatoria para funcionalidad de form)
   @Input() control!: FormControl;
+  //* Id del Input (obligatoria para funcionalidad de placeholder)
   @Input() id: string = '';
-  //* Label del Input (opcional)
+  //* Label del Input (opcional para texto del placeholder)
   @Input() label: string = '';
+  //* Type del Input (obligatoria para definir el type del input)
   @Input() type: string = 'text';
+  //* Placeholder del Input (opcional por implementacion de floating label)
   @Input() placeholder: string = '';
+  //* Required del Control (opcional segun la validacion del form)
   @Input() required: boolean = false;
+  //* ReadOnly del Input (opcional segun se requiera)
   @Input() readOnly: boolean = false;
+  //* FormSubmitted flag (obligatoria para validaciones hasta que el form sea enviado)
   @Input() formSubmitted: boolean = false;
+  //* SpecialInput (opcional segun el tipo de input y funcionalidades extras requieran)
+  @Input() specialInput: string = '';
+  //* MessageError (opcional para muestra de mensajes de error bajo el Input)
+  @Input() messageError: string = "";
 
   ngOnInit(): void {}
 
+  //! POSIBLEMENTE ELIMINAR POR FALTA DE USO
   displayErrors(){
     const {dirty, touched, errors} = this.control;
     return dirty && touched && errors;

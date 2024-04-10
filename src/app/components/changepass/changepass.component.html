@@ -11,41 +11,45 @@
         </div>
         <hr class="border-2">
         <!--* Form Section-->
-        <form [formGroup]="aFormGroup" (ngSubmit)="onSubmit()">
+        <form [formGroup]="nFormGroup" (ngSubmit)="onSubmit(nFormGroup.value)">
             <div class="w-75 mx-auto">
-                <!-- <shared-input 
-                    [formControl]="getNewPass()"
+                <shared-input
+                    [label]="'Contraseña nueva'"
                     [type]="'password'"
-                    [id]="'newPassword'"
-                    [placeholder]="'Contraseña Nueva'"
-                    [specialInput]="'password'"
-                    [formSubmitted]="formSubmitted">
-                </shared-input> -->
+                    [id]="'new_password'"
+                    [required]="true"
+                    [specialInput]="'inputPassword'"
+                    [messageError]="messageError"
+                    [formSubmitted]="formSubmitted"
+                    [control]="$any(nFormGroup.get('new_password'))">
+                </shared-input>
             </div>
             <div class="w-75 mx-auto mb-3">
-                <!-- <shared-input 
-                    [formControl]="getRepeatPass()"   
+                <shared-input
+                    [label]="'Repetir contraseña nueva'"
                     [type]="'password'"
-                    [id]="'repeatPassword'"
-                    [placeholder]="'Repetir contraseña nueva'"
-                    [specialInput]="'password'"
-                    [formSubmitted]="formSubmitted">
-                </shared-input> -->
+                    [id]="'repeat_password'"
+                    [required]="true"
+                    [specialInput]="'inputPassword'"
+                    [messageError]="messageError"
+                    [formSubmitted]="formSubmitted"
+                    [control]="$any(nFormGroup.get('repeat_password'))">
+                </shared-input>
             </div>
             <!--? Mensajes de error-->
-            @if (inputError !== "") {
+            <!-- @if (messageError !== "") {
                 <div
                     class="p-1 text-center text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3">
-                    <!--{{inputError}}-->
+                    
                     Ingrese su nueva contraseña
                 </div>
             }
             @else {
                 <div class="p-1 bg-white text-white ">|</div>
-            }
+            } -->
             <!--? Input: Boton-->
             <div class="input-group my-3">
-                <input type="submit" id="btnChange" class="form-control btn btn-primary" value="Ingresar" [disabled]="!aFormGroup.valid" disabled>
+                <input type="submit" id="btnChange" class="form-control btn btn-primary" value="Ingresar" [disabled]="nFormGroup.invalid">
             </div>
         </form>
     </div>

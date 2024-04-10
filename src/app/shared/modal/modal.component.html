@@ -12,16 +12,17 @@
             </div>
             <!--? Modal Body-->
             <div class="modal-body">
-                <form [formGroup]="mFormGroup" (ngSubmit)="onSubmit()">
+                <form [formGroup]="mFormGroup" (ngSubmit)="onSubmit(mFormGroup.value)">
                     <!--* Input Email-->
                     <div class="row">
-                        <!-- <shared-input 
+                        <shared-input
+                            [label]="'Correo Electronico'"
                             [type]="'email'"
-                            [formControl]="getUserEmail()"
-                            [placeholder]="'Correo Electronico'"
-                            [id]="'userEmail'"
-                            [formSubmitted]="formSubmitted">
-                        </shared-input> -->
+                            [required]="true"
+                            [id]="'usr_email'"
+                            [messageError]="messageError"
+                            [control]="$any(mFormGroup.get('usr_email'))">
+                        </shared-input>
                     </div>
                     <!--* Input Document-->
                     <div class="row mb-2">
@@ -34,24 +35,26 @@
                             </ul>
                         </div>
                         @if (documentSeleted == "DUI") {
-                            <!-- <shared-input 
-                                class="col-7 p-0"
-                                [formControl]="getDocumentDUI()"  
-                                [type]="'text'" 
+                            <shared-input
+                            class="col-7 p-0"
+                                [label]="'DUI'"
+                                [type]="'text'"
+                                [required]="false"
                                 [id]="'documentDUI'"
-                                [placeholder]="'XXXXXXXX-X'"
-                                [formSubmitted]="formSubmitted">
-                            </shared-input> -->
+                                [messageError]="messageError"
+                                [control]="$any(mFormGroup.get('documentDUI'))">
+                            </shared-input>
                         }
                         @else if (documentSeleted == "NIT") {
-                            <!-- <shared-input 
+                            <shared-input
                                 class="col-7 p-0"
-                                [formControl]="getDocumentNIT()"  
+                                [label]="'NIT'"
                                 [type]="'text'"
-                                [id]="'documentNIT'" 
-                                [placeholder]="'XXXX-XXXXXX-XXX-X'"
-                                [formSubmitted]="formSubmitted">
-                            </shared-input> -->
+                                [required]="false"
+                                [id]="'documentDUI'"
+                                [messageError]="messageError"
+                                [control]="$any(mFormGroup.get('documentDUI'))">
+                            </shared-input>
                         }
                         @else {
                             <div class="col-7 p-0">
@@ -64,13 +67,13 @@
                         }
                     </div>
                     <!--* Mensajes -->
-                    @if (inputError == "VALID") {
+                    <!-- @if (messageError == "VALID") {
                         <div
                             class="p-1 my-2 fs-6 text-center text-success-emphasis bg-success-subtle border border-success-subtle rounded-3">
                             Correo de recuperación fue enviado a su correo electronico
                         </div>
                     }
-                    @else if (inputError !== "") {
+                    @else if (messageError !== "") {
                         <div
                             class="py-1 my-2 text-center text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3">
                             Correo electronico o Documento DUI/NIT invalido.
@@ -78,7 +81,7 @@
                     }
                     @else {
                         <div class="py-1 my-2 bg-white text-white my-1">|</div>
-                    }
+                    } -->
                     <!--* Input Button-->
                     <div class="d-flex justify-content-center">
                         <input type="submit" class="btn btn-primary w-50" value="Restablecer">

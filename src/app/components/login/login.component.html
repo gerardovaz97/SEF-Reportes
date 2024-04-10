@@ -1,11 +1,11 @@
-<div class="container">
+<div class="container overflow-hidden">
     <div class="m-5 vh-80 shadow row justify-content-center align-items-center text-center">
         <div class="col-lg-5 col-md-12 my-1 ">
-            <!--TODO: LEFT MENU-->
+            <!--! LEFT FORM MENU -->
             <!--* LOGO IMAGE -->
             <shared-image [source]="'./assets/images/LOGO-SAFE.png'"  class="d-flex align-items-center justify-content-center py-2"></shared-image>
             <div class="px-2">
-                <p class="fs-5 text text-secondary text-center pb-1">Ingrese a su cuenta</p>
+                <p class="fs-6 text text-secondary text-center pb-1">Ingrese a su cuenta</p>
                 <!-- * FORM -->
                 <form [formGroup]="aFormGroup" (ngSubmit)="onSubmit(aFormGroup.value)">
                     <!--? Input: Usuario-->
@@ -15,6 +15,8 @@
                             [type]="'text'"
                             [required]="true"
                             [id]="'usr_name'"
+                            [messageError]="messageError"
+                            [formSubmitted]="formSubmitted"
                             [control]="$any(aFormGroup.get('usr_name'))">
                         </shared-input>
                     </div>
@@ -25,22 +27,25 @@
                             [type]="'password'"
                             [id]="'usr_password'"
                             [required]="true"
+                            [specialInput]="'inputPassword'"
+                            [messageError]="messageError"
+                            [formSubmitted]="formSubmitted"
                             [control]="$any(aFormGroup.get('usr_password'))">
                         </shared-input>
                     </div>
                     <!--? Input: Recaptcha-->
                     <div class="d-flex align-items-center justify-content-center">
-                        <ngx-recaptcha2 [siteKey]="siteKey" formControlName="recaptcha"></ngx-recaptcha2>
+                        <ngx-recaptcha2 #captchaElemen [siteKey]="siteKey" formControlName="captchaElemen"></ngx-recaptcha2>
                     </div>
                     <!--? Olvido contraseña-->
                     <div class="text-center my-2">
                         <shared-modal></shared-modal>
                     </div>
                     <!--? Mensajes de error-->
-                    <!-- @if (inputError !== "") {
+                    <!-- @if (messageError !== "") {
                         <div
                             class="p-1 text-center text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3">
-                            {{inputError}}
+                            {{messageError}}
                         </div>
                     }
                     @else {
@@ -53,7 +58,7 @@
                 </form>
             </div>
         </div>
-        <!-- TODO: RIGHT MENU -->
+        <!--! RIGHT IMAGE MENU -->
         <!--* SAFE IMAGE-->
         <div class="col-lg-7 my-1">
             <shared-image [source]="'./assets/images/IMAGEN-PORTAL.png'"  class="d-none d-xl-flex d-lg-flex img-fluid mx-auto"></shared-image>
