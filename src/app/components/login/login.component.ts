@@ -55,15 +55,6 @@ export class LoginComponent implements OnInit {
 
   //* Funcion que se ejecuta cuando el evento Submit del Form (form) es ejecutado
   onSubmit( form: any ) {
-    // const {usr_name, usr_password} = this.aFormGroup.value;
-    // console.log(this.aFormGroup.value);
-    // console.log(usr_name, usr_password);
-    
-    
-    //? Recepción de la Data del Formulario
-    // const usr_name = form.usr_name;
-    // const usr_password = form.usr_password;
-    
     //? Activacion de validadores del Submit
     this.formSubmitted = true;
 
@@ -77,7 +68,15 @@ export class LoginComponent implements OnInit {
   creedentialsInputValidation(form: any): void{
     this.creedentialService.postUserCredentials(form).subscribe(
       user => {
-        console.log(user[0].usr_nombre);
+        
+        if(user.msg){
+          console.log(user.msg);
+          return;
+        }
+        console.log(user[0]);
+        this.router.navigate(['reportes/dte-reportes'])
+        
+        
       }
     )
   }
