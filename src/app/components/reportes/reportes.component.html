@@ -1,25 +1,29 @@
-<button (click)="downloadReport()" id="download-reporte" class="mt-4 mx-4">Descargar reporte</button>
-<button (click)="downloadSelectedReport()" id="download-reporte" class="mt-4 mx-4">Descargar reporte data seleccionada</button>
-<span id="select-stats"></span>
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="form p-4" >
-        <input type="number" class="form-control" formControlName="n">
-        <input class="mt-2" type="submit">
-    </div>
-</form>
-<div id="ex-table-div" class="table table-primary thead-dark table-bordered"></div>
+<div class="px-4 py-2">
 
-<form (ngSubmit)="downloadSelectedReport()" [formGroup]="form2">
-    <input [formControlName]="'fecha'" class="form-control" type="date" (change)="downloadSelectedReport()" >
-    <input type="submit" class="mt-2">
-</form>
+    <button (click)="downloadReport()" id="download-reporte" class="mt-4 mx-4">Descargar reporte</button>
+    <button (click)="downloadSelectedReport()" id="download-reporte" class="mt-4 mx-4">Descargar reporte data seleccionada</button>
+    <span id="select-stats"></span>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form p-4" >
+            <input type="number" class="form-control" formControlName="n">
+            <input class="mt-2" type="submit">
+        </div>
+    </form>
+    <div id="ex-table-div" class="table table-primary thead-dark table-bordered"></div>
+    
+    <form (ngSubmit)="downloadSelectedReport()" [formGroup]="form2">
+        <input [formControlName]="'fecha'" class="form-control" type="date" (change)="downloadSelectedReport()" >
+        <input type="submit" class="mt-2">
+    </form>
+    
+    
+    <select id="filter-field"  [(ngModel)]="seleccionado" (change)="sleccionado()">
+        <option>Seleccione una opcion</option>
+        <option value="PROCESADO">PROCESADO</option>
+        <option value="RECHAZADO">RECHAZADO</option>
+    </select>
+    
+    
+    <div id="ex-table-diario-div" class="table table-primary thead-dark table-bordered"></div>
 
-
-<select id="filter-field"  [(ngModel)]="seleccionado" (change)="sleccionado()">
-    <option>Seleccione una opcion</option>
-    <option value="PROCESADO">PROCESADO</option>
-    <option value="RECHAZADO">RECHAZADO</option>
-</select>
-
-
-<div id="ex-table-diario-div" class="table table-primary thead-dark table-bordered"></div>
+</div>
