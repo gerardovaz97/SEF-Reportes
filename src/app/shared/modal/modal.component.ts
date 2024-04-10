@@ -44,11 +44,7 @@ export class ModalComponent implements OnInit{
     })
 
     //? Subscripcion al Observable para que mande la peticion a la API y obtener todos los usuarios almacenados
-    this.creedentialService.getUserCredentials().subscribe(
-      users => {
-        this.getEmails = users;
-      }
-    );
+    
   }
 
   //* Controles del fomulario

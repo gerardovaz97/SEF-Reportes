@@ -12,8 +12,7 @@ import { ReCaptcha2Component } from 'ngx-captcha';
 })
 export class LoginComponent implements OnInit {
 
-  //* Parametro local donde almacena los usuarios que son consumidos del API por el service
-  public getUser: User[] = [];
+  //* Parametro local donde almacena los usuarios que son consumidos del API por el service (ELIMINAR)
   public getUsers: any = []
 
   //* Key de Recaptcha
@@ -21,75 +20,65 @@ export class LoginComponent implements OnInit {
   public siteKey: string = "6LdQPKspAAAAAGxXtYbCOdaWW-RYC_VAQ4vCSk7_";
 
   //* Inicializando FormGroup para el Login
-  protected aFormGroup: FormGroup = new FormGroup({});
+  aFormGroup!: FormGroup;
 
   //* Inyeccion de servicios
   constructor(
     private creedentialService: CreedentialsService,
     private router: Router,
     private formBuilder: FormBuilder
-  ) {
-    
-   }
+  ) {}
 
   //* Codigo que se inicializa junto al componente
   ngOnInit(): void {
-    //? Conjunto de componentes del FormGroup con validaciones y almacenamiento de datos del form
-    this.aFormGroup = this.formBuilder.group({
-      username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
-      recaptcha: ['', Validators.required]
-    });
-    //? Subscripcion al Observable para que mande la peticion a la API y obtener todos los usuarios almacenados
-    this.creedentialService.getUserCredentials().subscribe(
-      users => {
-        this.getUser = users;
-        console.log(this.getUser);
-      }
-    );
+    //? Llamado a la creacion del form (new code)
+    this.createForm();
 
-    this.creedentialService.getUsers2Request().subscribe(
-      usuarios => {
-        this.getUsers = usuarios,
-       console.log(usuarios);
+    // this.creedentialService.getUsers2Request().subscribe(
+    //   usuarios => {
+    //     this.getUsers = usuarios;
+    //    console.log(usuarios);
        
-      }
-    )
+    //   })
+    
+  }
+  //* Funcion de creacion de Formulario (new code)
+  createForm(){
+    this.aFormGroup = this.formBuilder.group({
+      usr_name: new FormControl('', Validators.required),
+      usr_password: new FormControl('', Validators.required),
+      recaptcha: ['', Validators.required]
+    })
   }
 
-  //* Controles del formulario
   public formSubmitted: boolean = false;
-  getUsername(): any{ return this.aFormGroup.get('username') as FormControl; }
-  getPassword(): any{ return this.aFormGroup.get('password') as FormControl; }
 
   //* Funcion que se ejecuta cuando el evento Submit del Form (form) es ejecutado
-  onSubmit() {
-    //? Codigo de busqueda y validacion de credenciales
-    const { username, password } = this.aFormGroup.value;
+  onSubmit( form: any ) {
+    // const {usr_name, usr_password} = this.aFormGroup.value;
+    // console.log(this.aFormGroup.value);
+    // console.log(usr_name, usr_password);
+    
+    
+    //? Recepción de la Data del Formulario
+    // const usr_name = form.usr_name;
+    // const usr_password = form.usr_password;
+    
+    //? Activacion de validadores del Submit
     this.formSubmitted = true;
-    this.creedentialsInputValidation(username,password);
+
+    //? Envio de Formulario Validador de Credenciales
+    this.creedentialsInputValidation(form);
   }
 
   //* Variable de validacion de credenciales y formulario
   inputError: string = "";
 
-  creedentialsInputValidation(username: string, password: string): void{
-    const userAuth = this.getUser.filter( _creedentials => username === _creedentials.user);
-    const passAuth = userAuth.filter(_creedentials => password === _creedentials.password);
-    console.log(this.aFormGroup.get('username')?.status);
-    console.log(this.aFormGroup.get('password')?.status);
-    console.log(this.aFormGroup.get('recaptcha')?.status);
-    
-    
-    //? Validacion de credenciales correctas
-    if (passAuth.length == 1) {
-      this.router.navigate(['reportes/dte-reportes']);
-      this.formSubmitted = false;
-    }
-    //? Credenciales incorrectas
-    else {
-      this.aFormGroup.reset();
-      this.inputError = "Credenciales incorrectas";
-    }
+  creedentialsInputValidation(form: any): void{
+    this.creedentialService.postUserCredentials(form).subscribe(
+      user => {
+        console.log(user[0].usr_nombre);
+      }
+    )
   }
 }

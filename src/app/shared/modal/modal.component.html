@@ -15,13 +15,13 @@
                 <form [formGroup]="mFormGroup" (ngSubmit)="onSubmit()">
                     <!--* Input Email-->
                     <div class="row">
-                        <shared-input 
+                        <!-- <shared-input 
                             [type]="'email'"
                             [formControl]="getUserEmail()"
                             [placeholder]="'Correo Electronico'"
                             [id]="'userEmail'"
                             [formSubmitted]="formSubmitted">
-                        </shared-input>
+                        </shared-input> -->
                     </div>
                     <!--* Input Document-->
                     <div class="row mb-2">
@@ -34,24 +34,24 @@
                             </ul>
                         </div>
                         @if (documentSeleted == "DUI") {
-                            <shared-input 
+                            <!-- <shared-input 
                                 class="col-7 p-0"
                                 [formControl]="getDocumentDUI()"  
                                 [type]="'text'" 
                                 [id]="'documentDUI'"
                                 [placeholder]="'XXXXXXXX-X'"
                                 [formSubmitted]="formSubmitted">
-                            </shared-input>
+                            </shared-input> -->
                         }
                         @else if (documentSeleted == "NIT") {
-                            <shared-input 
+                            <!-- <shared-input 
                                 class="col-7 p-0"
                                 [formControl]="getDocumentNIT()"  
                                 [type]="'text'"
                                 [id]="'documentNIT'" 
                                 [placeholder]="'XXXX-XXXXXX-XXX-X'"
                                 [formSubmitted]="formSubmitted">
-                            </shared-input>
+                            </shared-input> -->
                         }
                         @else {
                             <div class="col-7 p-0">

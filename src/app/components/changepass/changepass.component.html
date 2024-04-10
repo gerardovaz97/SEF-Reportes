@@ -13,24 +13,24 @@
         <!--* Form Section-->
         <form [formGroup]="aFormGroup" (ngSubmit)="onSubmit()">
             <div class="w-75 mx-auto">
-                <shared-input 
+                <!-- <shared-input 
                     [formControl]="getNewPass()"
                     [type]="'password'"
                     [id]="'newPassword'"
                     [placeholder]="'Contraseña Nueva'"
                     [specialInput]="'password'"
                     [formSubmitted]="formSubmitted">
-                </shared-input>
+                </shared-input> -->
             </div>
             <div class="w-75 mx-auto mb-3">
-                <shared-input 
+                <!-- <shared-input 
                     [formControl]="getRepeatPass()"   
                     [type]="'password'"
                     [id]="'repeatPassword'"
                     [placeholder]="'Repetir contraseña nueva'"
                     [specialInput]="'password'"
                     [formSubmitted]="formSubmitted">
-                </shared-input>
+                </shared-input> -->
             </div>
             <!--? Mensajes de error-->
             @if (inputError !== "") {

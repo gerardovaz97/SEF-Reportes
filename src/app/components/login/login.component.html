@@ -6,27 +6,26 @@
             <shared-image [source]="'./assets/images/LOGO-SAFE.png'"  class="d-flex align-items-center justify-content-center py-2"></shared-image>
             <div class="px-2">
                 <p class="fs-5 text text-secondary text-center pb-1">Ingrese a su cuenta</p>
-                <!--* FORM-->
-                <form  (ngSubmit)="onSubmit()">
+                <!-- * FORM -->
+                <form [formGroup]="aFormGroup" (ngSubmit)="onSubmit(aFormGroup.value)">
                     <!--? Input: Usuario-->
                     <div class="w-75 mx-auto">
-                        <shared-input 
-                            [type]="'text'" 
-                            [formControl]="getUsername()" 
-                            [placeholder]="'Usuario'"
-                            [id]="'username'"
-                            [formSubmitted]="formSubmitted">
+                        <shared-input
+                            [label]="'Usuario'"
+                            [type]="'text'"
+                            [required]="true"
+                            [id]="'usr_name'"
+                            [control]="$any(aFormGroup.get('usr_name'))">
                         </shared-input>
                     </div>
                     <!--? Input: Contraseña-->
                     <div class="w-75 mx-auto mb-3">
-                        <shared-input 
-                            [type]="'password'" 
-                            [formControl]="getPassword()" 
-                            [placeholder]="'Contraseña'"
-                            [id]="'password'"
-                            [formSubmitted]="formSubmitted"
-                            [specialInput]="'password'">
+                        <shared-input
+                            [label]="'Contraseña'"
+                            [type]="'password'"
+                            [id]="'usr_password'"
+                            [required]="true"
+                            [control]="$any(aFormGroup.get('usr_password'))">
                         </shared-input>
                     </div>
                     <!--? Input: Recaptcha-->
@@ -38,7 +37,7 @@
                         <shared-modal></shared-modal>
                     </div>
                     <!--? Mensajes de error-->
-                    @if (inputError !== "") {
+                    <!-- @if (inputError !== "") {
                         <div
                             class="p-1 text-center text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3">
                             {{inputError}}
@@ -46,10 +45,10 @@
                     }
                     @else {
                         <div class="p-1 bg-white text-white ">|</div>
-                    }
+                    } -->
                     <!--? Input: Boton-->
                     <div class="input-group my-3">
-                        <input type="submit" class="form-control btn btn-primary" value="Ingresar" [disabled]="aFormGroup.valid">
+                        <input type="submit" class="form-control btn btn-primary" value="Ingresar" [disabled]="aFormGroup.invalid">
                     </div>
                 </form>
             </div>
