@@ -76,7 +76,6 @@ export class LoginComponent implements OnInit {
         console.log(user.usr_jwt);
         this.creedentialService.saveToken(user.usr_jwt);
         this.router.navigate(['reportes']);
-
       }
     )
   }
