@@ -18,14 +18,14 @@
         <!--! EYE ICON ELEMENT (password)-->
         @if (specialInput === 'inputPassword' && type === 'password') {
             <!-- ? Icono (ojo tachado) cuando la contraseña esta oculta -->
-            <div class="bg-light px-2 py-2 border border-1">
-            <i (click)="changeType()" class="bi bi-eye-slash text-black " style="font-size: 1.5em; color: #007bff;"></i>
+            <div class="btn bg-light px-2 py-2 border border-1" (click)="changeType()">
+            <i class="bi bi-eye-slash text-black " style="font-size: 1.5em; color: #007bff;"></i>
             </div>
         }
         @else if (specialInput === 'inputPassword' && type === 'text') {
             <!-- ? Icono (ojo completo) cuando la contraseña esta visible -->
-            <div class="bg-light px-2 py-2 border border-1">
-                <i (click)="changeType()" class="bi bi-eye-fill text-black" style="font-size: 1.5em; color: #007bff;"></i>
+            <div class="btn bg-light px-2 py-2 border border-1" (click)="changeType()">
+                <i class="bi bi-eye-fill text-black" style="font-size: 1.5em; color: #007bff;"></i>
             </div>
         }
     </div>
