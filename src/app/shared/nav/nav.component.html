@@ -5,10 +5,17 @@
             Descargar Manual
         </button>
     </div>
-    <div class="px-4 border border-top-0 border-bottom-0 ">
-        <button class="btn btn-toggle align-items-center rounded text-light d-flex align-items-center text-muted">
+    <div class="px-4 border border-top-0 border-bottom-0 dropdown">
+        <button 
+            class="btn dropdown-toggle align-items-center rounded text-light d-flex align-items-center text-muted"
+            id="dropdownUserButton"
+            data-bs-toggle="dropdown"
+            aria-expanded="false">
             {{usr_nombre}}
             <i class="bi bi-person-circle px-2" style="font-size: 2.4em; color: #AEB4B7;"></i>
         </button>
+        <ul class="dropdown-menu " aria-labelledby="dropdownUserButton">
+            <li class="dropdown-item btn" (click)="onLogout()">Logout</li>
+        </ul>
     </div>
 </div>
