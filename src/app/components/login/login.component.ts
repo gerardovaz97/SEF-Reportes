@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
         }
         console.log(user);
         
-        this.router.navigate(['reportes/dte-reportes'])
+        this.router.navigate(['reportes'])
         return;
       }
     )
