@@ -25,6 +25,7 @@ const routes: Routes = [
   {
     path: 'changepass',
     component: ChangepassComponent,
+    canActivate: [loginGuard]
   },
   {
     path: '**',
