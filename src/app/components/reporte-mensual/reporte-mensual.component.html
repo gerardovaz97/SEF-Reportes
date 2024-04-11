@@ -1,0 +1,14 @@
+<div class="m-3 vh-100 tabla">
+
+    <button (click)="downloadReport()" id="download-reporte" >Descargar reporte</button>
+        <button (click)="downloadSelectedReport()" id="download-reporte" class="mt-4 mx-4">Descargar reporte data seleccionada</button>
+        <span id="select-stats"></span>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form p-4" >
+                <input type="number" class="form-control" formControlName="n">
+                <input class="mt-2" type="submit">
+            </div>
+        </form>
+    <div id="ex-table-div" class="table table-primary thead-dark table-bordered "></div>
+
+</div>

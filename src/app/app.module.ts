@@ -17,6 +17,7 @@ import { ImageComponent } from './shared/image/image.component';
 import { ChangepassComponent } from './components/changepass/changepass.component';
 import { ReportesPageComponent } from './pages/reportes-page/reportes-page.component';
 import { SEFReportesRoutingModule } from './pages/reportes-routing.module';
+import { ReporteMensualComponent } from './components/reporte-mensual/reporte-mensual.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { SEFReportesRoutingModule } from './pages/reportes-routing.module';
     InputComponent,
     ImageComponent,
     ChangepassComponent,
-    ReportesPageComponent
+    ReportesPageComponent,
+    ReporteMensualComponent
   ],
   imports: [
     BrowserModule,
