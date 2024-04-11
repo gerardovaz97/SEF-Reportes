@@ -1,12 +1,8 @@
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginAuthService } from '../services/LoginAuth.service';
 
-
-export const loginGuard = (loginAuthService: LoginAuthService) => {
-
-  
-  if(loginAuthService.isAuthenticated()){
+export const loginGuard = () => {
+  if(localStorage.getItem('token')){
     return true;
   }
   else{
