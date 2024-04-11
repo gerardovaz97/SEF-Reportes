@@ -14,5 +14,9 @@ export class CreedentialsService {
     public postUserCredentials(user: any): Observable<any>{
         return this.http.post<any>(`${this.userUrl}/api/SEF/usuarios`, user);
     }
+
+    public saveToken(token:any): void{
+        localStorage.setItem('token', JSON.stringify(token));
+    }
     
 }

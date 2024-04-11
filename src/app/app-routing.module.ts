@@ -5,11 +5,12 @@ import { LoginComponent } from './components/login/login.component';
 import { ChangepassComponent } from './components/changepass/changepass.component';
 import { rutas } from './pages/reportes-routing.module';
 import { ReportesPageComponent } from './pages/reportes-page/reportes-page.component';
+import { loginGuard } from './guards/login-guard.guard';
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: 'login',
@@ -19,11 +20,16 @@ const routes: Routes = [
     path: 'reportes', 
     children: rutas,
     component: ReportesPageComponent,
+    canActivate: [loginGuard]
   },
   {
     path: 'changepass',
     component: ChangepassComponent,
   },
+  {
+    path: '**',
+    redirectTo: 'login',
+  }
 ];
 
 @NgModule({

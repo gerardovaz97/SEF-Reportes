@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CreedentialsService } from '../../services/creedentials.service';
-import { User } from '../../interfaces/user.interface';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ReCaptcha2Component } from 'ngx-captcha';
@@ -62,6 +61,7 @@ export class LoginComponent implements OnInit {
   public messageError: string = "";
 
   creedentialsInputValidation(form: any): any{
+    //? Subscripcion al CredentialsService (API)
     this.creedentialService.postUserCredentials(form).subscribe(
       user => {
         //? Verificando si la respuesta contiene mensaje de error sobre la peticion
@@ -72,10 +72,10 @@ export class LoginComponent implements OnInit {
           this.messageError = user.msg;
           return;
         }
-        console.log(user);
-        
-        this.router.navigate(['reportes/dte-reportes'])
-        return;
+
+        console.log(user.usr_jwt);
+        this.creedentialService.saveToken(user.usr_jwt);
+        this.router.navigate(['reportes/dte-reportes']);
       }
     )
   }
