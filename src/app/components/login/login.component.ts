@@ -72,17 +72,10 @@ export class LoginComponent implements OnInit {
           this.messageError = user.msg;
           return;
         }
-<<<<<<< HEAD
-        console.log(user);
-        
-        this.router.navigate(['reportes'])
-        return;
-=======
 
         console.log(user.usr_jwt);
         this.creedentialService.saveToken(user.usr_jwt);
-        this.router.navigate(['reportes/dte-reportes']);
->>>>>>> 3aae50a985e4a9450568c86b5c549481c63f8c87
+        this.router.navigate(['reportes']);
       }
     )
   }
