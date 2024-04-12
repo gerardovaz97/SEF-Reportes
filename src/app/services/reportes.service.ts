@@ -16,8 +16,6 @@ export class ReportesService {
         'authorization' :`Bearer ${tokenLS}`
       }
     )
-    console.log(headers);
-    
     return headers;
   }
   //* API tabla de reportes

@@ -55,20 +55,24 @@ export class ReportesComponent implements OnInit{
   ngOnInit() {    
 
     this.renderReporteDiario()
-    this.creedentialService.TokenValid();
    
   }
 
   downloadSelectedReport() {   
     this.renderReporteDiario()
-    
   }
   
   renderReporteDiario(){
     let fecha = this.form2.value
     this.reportesService.getReporteDiarioTableData(fecha).subscribe(
       reporte => {
-        this.getReporte = reporte;        
+        this.getReporte = reporte;      
+        
+        if(this.getReporte.msg){
+          //!IMPLEMENTAR BIEN EL MODAL LUEGO
+          this.creedentialService.LogoutUser(this.getReporte.msg);
+          return;
+        }
 
         this.ejTable = new Tabulator(this.tab2, {
           height: 400,

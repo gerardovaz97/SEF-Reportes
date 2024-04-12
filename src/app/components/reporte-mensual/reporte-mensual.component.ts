@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import {TabulatorFull as Tabulator} from 'tabulator-tables';
 
@@ -46,20 +46,23 @@ export class ReporteMensualComponent implements OnInit{
     { title: 'Numero de Registro', field: 'numeroDeRegistro' },
     { title: 'Usuario', field: 'usuario' },
     { title: 'Estado', field: 'estado' },
-
- 
   ];
 
   ngOnInit(): void {
     this.renderReporteMensual();
-    this.creedentialService.TokenValid();
   };
+
 
   renderReporteMensual(){
     this.reportesService.getReportesTableData().subscribe(
       reporte => {
         this.getReporte = reporte;
-  
+        
+        if(this.getReporte.msg){
+          //!IMPLEMENTAR BIEN EL MODAL LUEGO
+          this.creedentialService.LogoutUser(this.getReporte.msg);
+          return;
+        }
 
         this.exTable = new Tabulator(this.tab, {
           height: 400,

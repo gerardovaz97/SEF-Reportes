@@ -79,8 +79,6 @@ export class LoginComponent implements OnInit {
           this.messageError = user.msg;
           return;
         }
-
-        console.log(user.usr_jwt);
         this.creedentialService.saveToken(user.usr_jwt);
         this.router.navigate(['reportes']);
       }

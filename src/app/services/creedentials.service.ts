@@ -24,9 +24,10 @@ export class CreedentialsService {
         localStorage.setItem('token', token);
     }
     //! Eliminacion de Token al Logout
-    public LogoutUser(): void{
+    public LogoutUser(message:string = "Se ha cerrado la sesión"): void{
         localStorage.removeItem('token');
         this.router.navigate(['login']);
+        alert(message);
     }
 
     // //! Comporbación de Token
