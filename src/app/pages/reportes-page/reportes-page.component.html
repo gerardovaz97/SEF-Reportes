@@ -3,10 +3,24 @@
         <shared-sidebar class="bd-highlight"></shared-sidebar>
         <div class="flex-grow-1 bd-highlight vw-85">
             <div>
-                <shared-nav></shared-nav>
+                <shared-nav (logoutPress)="logoutPress($event)"></shared-nav>
             </div>
             <div class="m-2 overflow-auto d-flex flex-column page-content vw-85">
                 <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+    <!--* LOGOUT MODAL-->
+    <div class="modal fade" id="logoutmodal" tabindex="-1" aria-labelledby="logoutmodalbox" aria-hidden="true" [ngClass]="{'show ': pressModal}">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title fs-5" aria-labelledby="logoutmodalbox">¿Desea cerrar sesión?</h2>
+                </div>
+                <div class="modal-body row">
+                    <button type="button" class="btn btn-primary col-4 mx-auto " data-bs-dismiss="modal" (click)="onLogout()">Cerrar Sesión</button>
+                    <button type="button" class="btn btn-primary col-4 mx-auto " data-bs-dismiss="modal">Cancelar</button>
+                </div>
             </div>
         </div>
     </div>

@@ -55,6 +55,12 @@
                     <div class="input-group my-3">
                         <input type="submit" class="form-control btn btn-primary" value="Ingresar" [disabled]="aFormGroup.invalid">
                     </div>
+                    @if (isLoading) {
+                        <shared-loading-spinner></shared-loading-spinner>
+                    }
+                    @else {
+                        <div style="padding-bottom: 2.5em;"></div>
+                    }
                 </form>
             </div>
         </div>

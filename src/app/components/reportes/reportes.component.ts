@@ -4,6 +4,8 @@ import { Reporte } from '../../interfaces/reportes.interfaces';
 import { ReportesService } from '../../services/reportes.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { formatDate } from '@angular/common';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { CreedentialsService } from '../../services/creedentials.service';
 
 @Component({
   selector: 'app-reportes',
@@ -47,12 +49,13 @@ export class ReportesComponent implements OnInit{
     { title: 'Estado', field: 'responseMH.estado' },
   ];
    
-  constructor(private reportesService: ReportesService) {}  
+  constructor(private reportesService: ReportesService, private creedentialService: CreedentialsService) {}  
   
 
   ngOnInit() {    
 
     this.renderReporteDiario()
+    this.creedentialService.TokenValid();
    
   }
 

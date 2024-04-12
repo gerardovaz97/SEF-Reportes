@@ -27,7 +27,6 @@ export class ModalComponent implements OnInit{
   //* Inyeccion de Servicios
   constructor( 
     private formBuilder: FormBuilder,
-    private creedentialService: CreedentialsService,
   ){}
 
   //* Codigo que se inicializa junto al componentes

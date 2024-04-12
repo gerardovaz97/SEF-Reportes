@@ -11,7 +11,7 @@ export class CreedentialsService {
     //! API creedentials
     private userUrl: string = "http://localhost:8080"
 
-    constructor(private http: HttpClient, public router: Router) { }
+    constructor(private http: HttpClient, private router: Router) { }
 
     //! Metodo POST de las credenciales
     public postUserCredentials(user: any): Observable<any>{
@@ -20,11 +20,24 @@ export class CreedentialsService {
 
     //! Almacenando Token en el LocalStorage
     public saveToken(token:any): void{
-        localStorage.setItem('token', JSON.stringify(token));
+        localStorage.removeItem('token');
+        localStorage.setItem('token', token);
     }
     //! Eliminacion de Token al Logout
-    public LogoutUser(){
+    public LogoutUser(): void{
         localStorage.removeItem('token');
         this.router.navigate(['login']);
+    }
+
+    // //! Comporbación de Token
+    public jwtHelperService = new JwtHelperService();
+    public TokenValid(): void{
+        const jwt = localStorage.getItem('token');
+        if(this.jwtHelperService.isTokenExpired(jwt)){
+            this.LogoutUser();
+        }
+        else{
+            return;
+        }
     }
 }

@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import {TabulatorFull as Tabulator} from 'tabulator-tables';
 
 import { ReportesService } from '../../services/reportes.service';
+import { CreedentialsService } from '../../services/creedentials.service';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class ReporteMensualComponent implements OnInit{
   
   tab = document.createElement('div');
   
-  constructor(private reportesService: ReportesService) {} 
+  constructor(private reportesService: ReportesService, private creedentialService: CreedentialsService) {} 
 
   table_def = [
     { title: 'Fecha', field: 'fecha', width: 95 },
@@ -50,7 +51,8 @@ export class ReporteMensualComponent implements OnInit{
   ];
 
   ngOnInit(): void {
-    this.renderReporteMensual()
+    this.renderReporteMensual();
+    this.creedentialService.TokenValid();
   };
 
   renderReporteMensual(){

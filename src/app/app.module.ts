@@ -18,6 +18,7 @@ import { ChangepassComponent } from './components/changepass/changepass.componen
 import { ReportesPageComponent } from './pages/reportes-page/reportes-page.component';
 import { SEFReportesRoutingModule } from './pages/reportes-routing.module';
 import { ReporteMensualComponent } from './components/reporte-mensual/reporte-mensual.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ReporteMensualComponent } from './components/reporte-mensual/reporte-me
     ImageComponent,
     ChangepassComponent,
     ReportesPageComponent,
-    ReporteMensualComponent
+    ReporteMensualComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,

@@ -22,6 +22,9 @@ export class LoginComponent implements OnInit {
   //* Inicializando FormGroup para el Login
   aFormGroup!: FormGroup;
 
+  //* Inicializando bandera de Loading Spinner
+  public isLoading: boolean = false;
+
   //* Inyeccion de servicios
   constructor(
     private creedentialService: CreedentialsService,
@@ -49,6 +52,8 @@ export class LoginComponent implements OnInit {
 
   //* Funcion que se ejecuta cuando el evento Submit del Form (form) es ejecutado
   onSubmit( form: any ) {
+    //? Activacion del LoadingSpinner
+    this.isLoading = true;
     //? Activacion de validadores del Submit
     this.formSubmitted = true;
     //? Envio de Formulario Validador de Credenciales
@@ -64,6 +69,8 @@ export class LoginComponent implements OnInit {
     //? Subscripcion al CredentialsService (API)
     this.creedentialService.postUserCredentials(form).subscribe(
       user => {
+        //? Desactivar LoadingSpinner
+        this.isLoading = false;
         //? Verificando si la respuesta contiene mensaje de error sobre la peticion
         if(user.msg){
           //? Reset del Captcha

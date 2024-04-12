@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CreedentialsService } from '../../services/creedentials.service';
 
 @Component({
@@ -9,9 +9,12 @@ import { CreedentialsService } from '../../services/creedentials.service';
 export class NavComponent {
   protected usr_nombre?: string = "Damaya";
 
-  constructor( public creedentialService: CreedentialsService){}
+  constructor(){}
 
-  onLogout(){
-    this.creedentialService.LogoutUser();
+  @Output()
+  public logoutPress = new EventEmitter<boolean>();
+
+  emitLogoutPress():void{
+    this.logoutPress.emit(true);
   }
 }
