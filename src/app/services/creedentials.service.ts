@@ -1,17 +1,19 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
-import { User } from '../interfaces/user.interface';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class CreedentialsService {
 
     //! API creedentials
-    private userUrl: string = "http://localhost:8080"
+    private userUrl: string | undefined;
 
-    constructor(private http: HttpClient, private router: Router) { }
+    constructor(private http: HttpClient, private router: Router) { 
+        this.userUrl = environment.apiUrl;
+    }
 
     //! Metodo POST de las credenciales
     public postUserCredentials(user: any): Observable<any>{

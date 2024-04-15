@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Reporte } from '../interfaces/reportes.interfaces';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +20,11 @@ export class ReportesService {
     return headers;
   }
   //* API tabla de reportes
-  private apiUrl : string = "https://6601ae619d7276a75551f43b.mockapi.io/"
-  private apiReportes : string = "http://localhost:8080"
+  private apiReportes : string | undefined;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.apiReportes = environment.apiUrl;
+  }
 
   private getReportesRequest(url:string): Observable<any>{
     let headers =  this.tokenRequest();
