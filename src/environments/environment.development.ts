@@ -1,5 +1,5 @@
 export const environment = {
-    production: true,
-    apiUrl: " http://ruta.com ",
+    production: false,
+    apiUrl: "http://localhost:8080",
     siteKey:  "6LdQPKspAAAAAGxXtYbCOdaWW-RYC_VAQ4vCSk7_",
 };
