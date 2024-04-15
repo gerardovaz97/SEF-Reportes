@@ -1,7 +1,10 @@
 <div class="px-4 py-2">
     <div class="d-flex m-2 gap-4">
 
+       
         <button (click)="downloadReport()" id="download-reporte" class="btn btn-primary">Descargar reporte</button>
+
+        <form [formGroup]="form2">
             <input [formControlName]="'fecha'" class="form-control" type="date" (change)="downloadSelectedReport()" >
         </form>
         

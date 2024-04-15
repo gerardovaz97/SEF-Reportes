@@ -62,6 +62,12 @@ export class ReportesComponent implements OnInit{
    
   }
 
+  downloadSelectedReport() {   
+    this.renderReporteDiario()
+  }
+  downloadReport(){
+    this.ejTable.download('xlsx',"data.xlsx")
+   }
   
   renderReporteDiario(){
     let fecha = this.form2.value
@@ -74,7 +80,7 @@ export class ReportesComponent implements OnInit{
           this.creedentialService.LogoutUser(this.getReporte.msg);
           return;
         }
-        
+
         this.ejTable = new Tabulator(this.tab2, {
           height: 400,
           layout: 'fitColumns',
@@ -87,29 +93,28 @@ export class ReportesComponent implements OnInit{
           paginationCounter:"rows",
           selectableRows: true,
           data: this.getReporte,
-        });        
+        });
+
+        console.log(this.getReporte);
         
+
         document.getElementById('ex-table-diario-div')?.appendChild(this.tab2);
       } 
     )
   }
-  
+
   sleccionado(){
     this.verSeleccion = this.seleccionado
-    
+
     if(this.verSeleccion != "Seleccione una opcion" ){
-      this.ejTable.setFilter("responseMH.estado", "=", this.verSeleccion)
+        this.ejTable.setFilter("responseMH.estado", "=", this.verSeleccion)
     } else {
-      this.renderReporteDiario()
+        this.renderReporteDiario()
     }
   }
   dteSleccionado(){
     this.verDteSeleccion = this.dteSeleccionado
 
         this.ejTable.setFilter("identificacion.tipoDte", "=", this.verDteSeleccion)
-    }
-
-      downloadReport(){
-        this.ejTable.download('xlsx',"data.xlsx")
-       }
-    }
+  }
+}
