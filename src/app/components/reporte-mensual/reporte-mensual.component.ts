@@ -13,11 +13,18 @@ import { CreedentialsService } from '../../services/creedentials.service';
 })
 export class ReporteMensualComponent implements OnInit{
   
+  tipoDteList : string[] = ['Seleccione una opcion', 'Factura' , 'Comprobante Credito Fiscal']
+
+  estadoList : string[] = ['Seleccione una opcion' , 'PROCESADO' , 'RECHAZADO', 'INVALIDADO', 'PENDIENTE']
+
   exTable: any;
 
   public getReporte : any;
   form = new FormGroup({
-    n: new FormControl('')
+    n: new FormControl(''),
+    fecha: new FormControl(''),
+    estado: new FormControl(''),
+    tipoDte: new FormControl('')
   });
   
   tab = document.createElement('div');
@@ -25,27 +32,27 @@ export class ReporteMensualComponent implements OnInit{
   constructor(private reportesService: ReportesService, private creedentialService: CreedentialsService) {} 
 
   table_def = [
-    { title: 'Fecha', field: 'fecha', width: 95 },
+    { title: 'Fecha', field: 'identificacion.fecEmi', width: 95 },
     { title: 'Corte', field: 'corte', width: 95 },
     { title: 'Clase de Documento', field: 'claseDocumento', width:170 },
-    { title: 'Tipo de Documento', field: 'tipoDocumento', width:170 },
-    { title: 'Codigo de Generacion de DTE', field: 'codigoGeneracionDTE', width: 280 },
-    { title: 'Sello de Recibido', field: 'selloRecibido', width: 320 },
-    { title: 'Numero de Control', field: 'numeroControl', width: 240 },
-    { title: 'NIT', field: 'NIT', width:120},
-    { title: 'Nombre del Cliente', field: 'nombreCliente',width: 255 },
-    { title: 'Ventas Exentas', field: 'ventasExentas', width:135 },
-    { title: 'Ventas no Sujetas', field: 'ventasNoSujetas',width: 150 },
-    { title: 'Ventas Gravadas Locales', field: 'ventasGravadasLocales', width: 195 },
-    { title: 'Debito Fiscal IVA 1%', field: 'debitoFiscalIva' },
+    { title: 'Tipo de Documento', field: 'identificacion.tipoDte', width:170 },
+    { title: 'Codigo de Generacion de DTE', field: 'codigoGeneracion', width: 280 },
+    { title: 'Sello de Recibido', field: 'responseMH.selloRecibido', width: 320 },
+    { title: 'Numero de Control', field: 'identificacion.numeroControl', width: 240 },
+    { title: 'NIT', field: 'emisor.nit', width:120},
+    { title: 'Nombre del Cliente', field: 'receptor.nombre',width: 255 },
+    { title: 'Ventas Exentas', field: 'resumen.totalExenta', width:135 },
+    { title: 'Ventas no Sujetas', field: 'resumen.totalNoSuj',width: 150 },
+    { title: 'Ventas Gravadas Locales', field: 'resumen.totalGravada', width: 195 },
+    { title: 'Debito Fiscal IVA 1%', field: 'resumen.ivaRete1' },
     { title: 'Ventas a Cuentas De Terceros no Domiciliados', field: 'ventasACuentaDeTercerosNoDomiciliados' },
     { title: 'Debito por Ventas a Cuentas de Terceros no Domiciliados', field: 'debitoPorVentasACuentasDeTercerosNoDomiciliados' },
-    { title: 'Total de Ventas', field: 'totalVentas' },
-    { title: 'IVA Percibido', field: 'IVAPercibido' },
+    { title: 'Total de Ventas', field: 'resumen.totalPagar' },
+    { title: 'IVA Percibido', field: 'resumen.totalIva' },
     { title: 'Numero de Anexo', field: 'numeroDeAnexo' },
     { title: 'Numero de Registro', field: 'numeroDeRegistro' },
-    { title: 'Usuario', field: 'usuario' },
-    { title: 'Estado', field: 'estado' },
+    { title: 'Usuario', field: 'emisor.nombre' },
+    { title: 'Estado', field: 'responseMH.estado' },
   ];
 
   ngOnInit(): void {
@@ -84,8 +91,7 @@ export class ReporteMensualComponent implements OnInit{
   }
 
   onSubmit(){
-    const n = this.form.value;
-    this.reportesService.postData(n).subscribe(response => {
+    this.reportesService.postData(this.form.value).subscribe(response => {
     });
   }
 
