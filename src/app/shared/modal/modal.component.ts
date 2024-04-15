@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { User } from '../../interfaces/user.interface';
-import { CreedentialsService } from '../../services/creedentials.service';
-import { ReCaptcha2Component } from 'ngx-captcha';
 
 const regexdui = /^[0-9]{8}-[0-9]$/;
 const regexnit = /^[0-9]{4}-[0-9]{6}-[0-9]{3}-[0-9]$/;
@@ -54,13 +52,8 @@ export class ModalComponent implements OnInit{
 
   onSubmit(form: any):void{
     console.log(form);
-    
   }
 
   //* Variable de validacion de credenciales y formulario
   public messageError: string = "";
-
-  forgotPasswordInputValidation(userEmail:string, documentDUI?:string, documentNIT?: string){
-    
-  }
 }
