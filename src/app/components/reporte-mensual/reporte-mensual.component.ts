@@ -94,9 +94,6 @@ export class ReporteMensualComponent implements OnInit{
   }
 
   onSubmit(){    
-    console.log("Enviando...");
-    console.log(this.form.value);
-
     if (this.form.value.tipoDte === 'Factura'){
       this.form.value.tipoDte = '01'
     }
