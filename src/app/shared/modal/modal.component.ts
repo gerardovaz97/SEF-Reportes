@@ -52,7 +52,7 @@ export class ModalComponent implements OnInit{
 
   onSubmit(form: any):void{
     console.log(form);
-  }
+    }
 
   //* Variable de validacion de credenciales y formulario
   public messageError: string = "";

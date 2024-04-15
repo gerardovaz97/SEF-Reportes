@@ -40,7 +40,6 @@ export class ChangepassComponent implements OnInit{
   messageError: string = "";
 
   newPasswordValidation(form: any): void {
-    console.log();
     //! FUNCIONALIDAD DE CAMBIO DE CONTRASEÑA
     this.messageError = "NULL";
   }
