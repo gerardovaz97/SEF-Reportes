@@ -1,13 +1,19 @@
 <div class="px-4 py-2">
-    <div class="d-flex bg-success-subtle m-2 gap-4">
+    <div class="d-flex m-2 gap-4">
 
-        <form (ngSubmit)="downloadSelectedReport()" [formGroup]="form2" class="bg-danger-subtle w-25">
+        <form (ngSubmit)="downloadSelectedReport()" [formGroup]="form2" class="w-25">
             <input [formControlName]="'fecha'" class="form-control" type="date" (change)="downloadSelectedReport()" >
         </form>
         
-        <select id="filter-field"  [(ngModel)]="seleccionado" (change)="sleccionado()" class="form-select w-25">
+        <select [(ngModel)]="seleccionado" (change)="sleccionado()" class="form-select w-25">
             @for (estado of estadoList ;  track estadoList){
                 <option value={{estado}}>{{estado}}</option>
+            }
+        </select>
+
+        <select  [(ngModel)]="dteSeleccionado" (change)="dteSleccionado()" class="form-select w-25">
+            @for (tipoDte of tipoDteList ;  track tipoDteList){
+                <option value={{tipoDte}}>{{tipoDte}}</option>
             }
         </select>
 

@@ -1,23 +1,21 @@
 <div class="m-3 vh-100 tabla">
-    <button (click)="downloadReport()" id="download-reporte">Descargar reporte</button>
-    <button (click)="downloadSelectedReport()" id="download-reporte" class="mt-4 mx-4">Descargar reporte data
-        seleccionada</button>
-    <span id="select-stats"></span>
+    <button (click)="downloadReport()" id="download-reporte" class="btn btn-primary">Descargar reporte</button>
+    <span class="d-block mt-2 h4 text-primary font-bold fw-bolder">Generar DTE</span>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div class="form p-4">
+        <div class="form pb-2 d-flex gap-2">
             <input type="number" class="form-control" formControlName="n">
-            <input type="date" class="form-control" formControlName="fecha" >
-            <select (change)="sleccionado()" class="form-select">
+            <input type="date" class="form-control" formControlName="fechaEmi" required >
+            <select  class="form-select" formControlName="estado" required>
                 @for (estado of estadoList ;  track estadoList){
                     <option value={{estado}}>{{estado}}</option>
                 }
             </select>
-            <select (change)="sleccionado()" class="form-select">
+            <select class="form-select" formControlName="tipoDte" required>
                 @for (tipoDte of tipoDteList ;  track tipoDteList){
                     <option value={{tipoDte}}>{{tipoDte}}</option>
                 }
             </select>
-            <input class="mt-2" type="submit">
+            <input class="mt-2 btn btn-primary" type="submit">
         </div>
     </form>
     <div id="ex-table-div" class="table table-primary thead-dark table-bordered "></div>

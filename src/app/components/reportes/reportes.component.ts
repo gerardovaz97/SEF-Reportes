@@ -27,9 +27,15 @@ export class ReportesComponent implements OnInit{
   
   seleccionado : string = "Seleccione una opcion";
   
-  verSeleccion: string = ""
+  verSeleccion: string = "";
+
+  dteSeleccionado : string = "Seleccione una opcion";
+
+  verDteSeleccion : string = ""
   
   estadoList : string[] = ['Seleccione una opcion' , 'PROCESADO' , 'RECHAZADO', 'INVALIDADO', 'PENDIENTE']
+
+  tipoDteList : string[] = ['Seleccione una opcion' , '01', '03']
 
   form2= new FormGroup({
     fecha: new FormControl(this.customDate)
@@ -105,5 +111,9 @@ export class ReportesComponent implements OnInit{
         this.renderReporteDiario()
     }
   }
-  
+  dteSleccionado(){
+    this.verDteSeleccion = this.dteSeleccionado
+
+        this.ejTable.setFilter("identificacion.tipoDte", "=", this.verDteSeleccion)
+  }
 }

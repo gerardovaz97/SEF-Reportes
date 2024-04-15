@@ -13,16 +13,18 @@ import { CreedentialsService } from '../../services/creedentials.service';
 })
 export class ReporteMensualComponent implements OnInit{
   
-  tipoDteList : string[] = ['Seleccione una opcion', 'Factura' , 'Comprobante Credito Fiscal']
+  tipoDteList : string[] = [ 'Factura' , 'Comprobante Credito Fiscal']
 
-  estadoList : string[] = ['Seleccione una opcion' , 'PROCESADO' , 'RECHAZADO', 'INVALIDADO', 'PENDIENTE']
+  estadoList : string[] = [ 'PROCESADO' , 'RECHAZADO', 'INVALIDADO', 'PENDIENTE']
 
   exTable: any;
+
+  estadoSeleccionado: string = "" ;
 
   public getReporte : any;
   form = new FormGroup({
     n: new FormControl(''),
-    fecha: new FormControl(''),
+    fechaEmi: new FormControl(''),
     estado: new FormControl(''),
     tipoDte: new FormControl('')
   });
@@ -63,7 +65,8 @@ export class ReporteMensualComponent implements OnInit{
   renderReporteMensual(){
     this.reportesService.getReportesTableData().subscribe(
       reporte => {
-        this.getReporte = reporte;
+
+        this.getReporte = reporte;        
         
         if(this.getReporte.msg){
           //!IMPLEMENTAR BIEN EL MODAL LUEGO
@@ -90,19 +93,23 @@ export class ReporteMensualComponent implements OnInit{
     );
   }
 
-  onSubmit(){
+  onSubmit(){    
+    console.log("Enviando...");
+    console.log(this.form.value);
+
+    if (this.form.value.tipoDte === 'Factura'){
+      this.form.value.tipoDte = '01'
+    }
+    if (this.form.value.tipoDte === 'Comprobante Credito Fiscal'){
+      this.form.value.tipoDte = '03'
+    }
+    
     this.reportesService.postData(this.form.value).subscribe(response => {
     });
   }
 
   downloadReport(){
    this.exTable.download('xlsx',"data.xlsx")
-  }
-
-  downloadSelectedReport() {   
-
-    this.exTable.setFilter("fecha", "=", "fecha")
-    
   }
 
 }
