@@ -12,7 +12,7 @@ import { ReCaptcha2Component } from 'ngx-captcha';
 export class LoginComponent implements OnInit {
 
   //* Parametro local donde almacena los usuarios que son consumidos del API por el service
-  //TODO: CAMBIAR DE ANY A UNA INTERFAZ DE TIPO USUARIO CUANDO SE SEPA QUE DATOS OCUPAR
+  //!: CAMBIAR DE ANY A UNA INTERFAZ DE TIPO USUARIO CUANDO SE SEPA QUE DATOS OCUPAR
   public getUsers: any = []
 
   //* Key de Recaptcha
@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
   }
 
   //* Variable de validacion de credenciales y formulario
-  //TODO: VERIFICAR LUEGO
+  //? VERIFICAR LUEGO
   public messageError: string = "";
 
   creedentialsInputValidation(form: any): any{

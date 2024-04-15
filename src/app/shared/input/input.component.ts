@@ -6,7 +6,7 @@ import { FormControl} from '@angular/forms';
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss'
 })
-export class InputComponent implements OnInit{
+export class InputComponent{
 
   //* FormControl del Input (obligatoria para funcionalidad de form)
   @Input() control!: FormControl;
@@ -28,8 +28,6 @@ export class InputComponent implements OnInit{
   @Input() specialInput: string = '';
   //* MessageError (opcional para muestra de mensajes de error bajo el Input)
   @Input() messageError: string = "";
-
-  ngOnInit(): void {}
 
   //! POSIBLEMENTE ELIMINAR POR FALTA DE USO
   displayErrors(){

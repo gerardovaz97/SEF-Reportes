@@ -36,17 +36,6 @@
                     [control]="$any(nFormGroup.get('repeat_password'))">
                 </shared-input>
             </div>
-            <!--? Mensajes de error-->
-            <!-- @if (messageError !== "") {
-                <div
-                    class="p-1 text-center text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3">
-                    
-                    Ingrese su nueva contraseña
-                </div>
-            }
-            @else {
-                <div class="p-1 bg-white text-white ">|</div>
-            } -->
             <!--? Input: Boton-->
             <div class="input-group my-3">
                 <input type="submit" id="btnChange" class="form-control btn btn-primary" value="Ingresar" [disabled]="nFormGroup.invalid">
