@@ -3,6 +3,7 @@ import { CreedentialsService } from '../../services/creedentials.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ReCaptcha2Component } from 'ngx-captcha';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   //* Key de Recaptcha
   @ViewChild('captchaElemen') captchaElemen!: ReCaptcha2Component;
-  public siteKey: string = "6LdQPKspAAAAAGxXtYbCOdaWW-RYC_VAQ4vCSk7_";
+  public siteKey: string | undefined;
 
   //* Inicializando FormGroup para el Login
   aFormGroup!: FormGroup;
@@ -30,7 +31,9 @@ export class LoginComponent implements OnInit {
     private creedentialService: CreedentialsService,
     private router: Router,
     private formBuilder: FormBuilder
-  ) {}
+  ) {
+    this.siteKey = environment.siteKey;
+  }
 
   //* Codigo que se inicializa junto al componente
   ngOnInit(): void {
